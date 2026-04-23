@@ -21,7 +21,7 @@ export default async function Home() {
       <section className="section-space">
         <div className="container-width">
           <div className="max-w-4xl space-y-6">
-            <BrandLogo />
+            <BrandLogo large />
             <h1 className="heading-serif text-4xl md:text-6xl leading-tight">
               Fixed income notes, frameworks, and decision support for serious market participants
             </h1>

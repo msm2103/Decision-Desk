@@ -18,7 +18,7 @@ export default function GuestPmsPage() {
   const trades = getApprovedGuestPmTrades();
 
   return (
-    <>
+    <div style={{ background: "linear-gradient(180deg, #FBF6EA 0%, #F8F0DD 100%)" }}>
       <Section
         eyebrow="Guest PMs"
         title="Curated contributor profiles and structured trade submissions"
@@ -26,6 +26,6 @@ export default function GuestPmsPage() {
       >
         <GuestPmDirectory contributors={contributors} trades={trades} />
       </Section>
-    </>
+    </div>
   );
 }
