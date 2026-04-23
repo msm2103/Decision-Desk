@@ -1,12 +1,9 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import gfm from "remark-gfm";
+import notesManifest from "@/generated/notes-manifest.json";
 import type { Note } from "@/lib/types";
-
-const notesDirectory = path.join(process.cwd(), "content", "notes");
 
 type NoteFrontMatter = {
   title: string;
@@ -17,6 +14,11 @@ type NoteFrontMatter = {
   excerpt: string;
 };
 
+type NoteSource = {
+  slug: string;
+  source: string;
+};
+
 function estimateReadingTime(markdown: string): string {
   const words = markdown.trim().split(/\s+/).length;
   const minutes = Math.max(1, Math.round(words / 220));
@@ -24,12 +26,8 @@ function estimateReadingTime(markdown: string): string {
 }
 
 export async function getAllNotes(): Promise<Note[]> {
-  const filenames = await fs.readdir(notesDirectory);
-  const notes = await Promise.all(
-    filenames
-      .filter((file) => file.endsWith(".md"))
-      .map(async (filename) => getNoteBySlug(filename.replace(".md", ""))),
-  );
+  const sources = notesManifest as NoteSource[];
+  const notes = await Promise.all(sources.map((entry) => getNoteFromSource(entry.slug, entry.source)));
 
   return notes.sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : -1,
@@ -37,9 +35,18 @@ export async function getAllNotes(): Promise<Note[]> {
 }
 
 export async function getNoteBySlug(slug: string): Promise<Note> {
-  const fullPath = path.join(notesDirectory, `${slug}.md`);
-  const fileContents = await fs.readFile(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+  const sources = notesManifest as NoteSource[];
+  const source = sources.find((entry) => entry.slug === slug);
+
+  if (!source) {
+    throw new Error(`Note not found for slug: ${slug}`);
+  }
+
+  return getNoteFromSource(source.slug, source.source);
+}
+
+async function getNoteFromSource(slug: string, source: string): Promise<Note> {
+  const { data, content } = matter(source);
   const frontMatter = data as NoteFrontMatter;
 
   const processed = await remark().use(gfm).use(html).process(content);
