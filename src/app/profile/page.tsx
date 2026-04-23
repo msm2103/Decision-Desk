@@ -48,7 +48,11 @@ const focusAreas = [
 export default function ProfilePage() {
   return (
     <>
-      <Section title="Personal Profile" description="Trading under the alias DD">
+      <Section
+        title="Personal Profile"
+        description="Trading under the alias DD"
+        descriptionClassName="text-xl font-semibold tracking-normal"
+      >
         <div
           className="card max-w-4xl mr-auto space-y-4"
           style={{ color: "var(--brand-navy-soft)" }}
