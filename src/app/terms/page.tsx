@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Terms",
-  description: "Terms of use for The Decision Room website and digital tools.",
+  description: "Terms of use for Decision Desk website and digital tools.",
   path: "/terms",
 });
 

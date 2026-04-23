@@ -5,7 +5,7 @@ import { buildMetadata, siteConfig } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Contact",
   description:
-    "Contact The Decision Room for mentoring, market problem-solving, idea review, or collaboration enquiries.",
+    "Contact Decision Desk for mentoring, market problem-solving, idea review, or collaboration enquiries.",
   path: "/contact",
 });
 

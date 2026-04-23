@@ -8,8 +8,9 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/profile", label: "Profile" },
   { href: "/notes", label: "Field Notes" },
+  { href: "/guest-pms", label: "Guest PMs" },
   { href: "/playbook", label: "Playbook" },
-  { href: "/work-with-me", label: "Work with TDR" },
+  { href: "/work-with-me", label: "Work with DD" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -22,7 +23,8 @@ export function Navbar() {
         <BrandLogo small />
         <nav className="flex w-full items-center gap-2 overflow-x-auto whitespace-nowrap md:w-auto md:gap-6 md:overflow-visible">
           {navItems.map((item) => {
-            const active = pathname === item.href;
+            const active =
+              item.href === "/" ? pathname === item.href : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}

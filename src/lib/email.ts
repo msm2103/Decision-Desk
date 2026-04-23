@@ -36,7 +36,7 @@ export async function sendContactEnquiryEmail(payload: {
   message: string;
 }) {
   const html = `
-    <h2>New enquiry from The Decision Room site</h2>
+    <h2>New enquiry from Decision Desk site</h2>
     <p><strong>Name:</strong> ${payload.name}</p>
     <p><strong>Email:</strong> ${payload.email}</p>
     <p><strong>Company / Organisation:</strong> ${payload.organisation || "Not provided"}</p>

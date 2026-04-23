@@ -35,7 +35,7 @@ const keyQuestions = [
 ];
 
 export const metadata = buildMetadata({
-  title: "Work with TDR",
+  title: "Work with DD",
   description:
     "Collaboration on fixed income decisions: duration, curve positioning, hedging, RV, portfolio construction, and process.",
   path: "/work-with-me",
@@ -45,16 +45,16 @@ export default function WorkWithMePage() {
   return (
     <>
       <Section
-        eyebrow="Work with TDR"
+        eyebrow="Work with DD"
         title="Structured collaboration for practical fixed income decisions"
-        description="TDR advises institutional investors, treasury teams, and insurers on the practicalities of fixed income, helping turn market views into defensible strategy. Whether the challenge is duration, curve positioning, hedging, or portfolio construction, TDR brings a structured framework and independent perspective to ensure decisions hold up under real-world market constraints."
+        description="DD advises institutional investors, treasury teams, and insurers on the practicalities of fixed income, helping turn market views into defensible strategy. Whether the challenge is duration, curve positioning, hedging, or portfolio construction, DD brings a structured framework and independent perspective to ensure decisions hold up under real-world market constraints."
       />
 
       <Section title="Interactive Audience Map">
         <InteractiveClientServicesMindMap />
       </Section>
 
-      <Section title="Questions TDR can help answer">
+      <Section title="Questions DD can help answer">
         <ul className="card list-disc list-inside space-y-3 text-slate-700 px-6 py-4">
           {keyQuestions.map((question) => (
             <li key={question.label}>
@@ -76,7 +76,7 @@ export default function WorkWithMePage() {
       <Section title="Get in touch">
         <div className="card max-w-2xl space-y-4">
           <p className="text-slate-700">
-          If you have a specific fixed income decision, process bottleneck, or implementation challenge, The Decision Room would be happy to talk it through with you
+          If you have a specific fixed income decision, process bottleneck, or implementation challenge, Decision Desk would be happy to talk it through with you
           </p>
           <Link href="/contact" className="btn-primary w-fit">
             Get in touch

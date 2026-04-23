@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Profile",
   description:
-    "Learn more about TDR, a fixed income practitioner focused on macro rates, relative value, hedging, portfolio construction, and market process.",
+    "Learn more about DD, a fixed income practitioner focused on macro rates, relative value, hedging, portfolio construction, and market process.",
   path: "/profile",
 });
 
@@ -48,13 +48,13 @@ const focusAreas = [
 export default function ProfilePage() {
   return (
     <>
-      <Section title="Personal Profile" description="Trading under the alias TDR">
+      <Section title="Personal Profile" description="Trading under the alias DD">
         <div
           className="card max-w-4xl mr-auto space-y-4"
           style={{ color: "var(--brand-navy-soft)" }}
         >
           <p>
-            TDR brings over 15 years of experience across hedge funds, insurance asset
+            DD brings over 15 years of experience across hedge funds, insurance asset
             management, treasury risk, banking, and sell-side rates derivatives, with
             particular focus on developed-market rates relative value across EUR and
             GBP. Broader G10 markets are used selectively for hedging, beta control,
@@ -99,7 +99,7 @@ export default function ProfilePage() {
           style={{ color: "var(--brand-navy-soft)" }}
         >
           <p>
-            TDR focuses on developed-market rates relative value, with particular
+            DD focuses on developed-market rates relative value, with particular
             depth in EUR and GBP and broader G10 markets used selectively for
             hedging, beta control, and trade expression. Areas of emphasis
             include duration and curve strategy, cross-market allocation, asset
@@ -160,7 +160,7 @@ export default function ProfilePage() {
           style={{ color: "var(--brand-navy-soft)" }}
         >
           <p>
-          TDR&apos;s investment philosophy starts from the view that fixed income markets are generally highly efficient. In liquid markets, the observed price is usually the best available point-in-time clearing level for the marginal transaction.
+          DD&apos;s investment philosophy starts from the view that fixed income markets are generally highly efficient. In liquid markets, the observed price is usually the best available point-in-time clearing level for the marginal transaction.
           </p>
           <p>
           That means the opportunity rarely comes from assuming the market is simply wrong in a broad directional sense. More often, it comes from recognising that beneath any market price sits a range of possible outcomes, and that different trades embed very different return distributions, carry profiles, convexity, and sensitivities to changing macro regimes.
@@ -317,7 +317,7 @@ export default function ProfilePage() {
           style={{ color: "var(--brand-navy-soft)" }}
         >
           <p>
-            TDR combines discretionary market experience with systematic tooling. The
+            DD combines discretionary market experience with systematic tooling. The
             analytical toolkit includes Python, SQL, VBA, AI agents, LLMs, Bloomberg-based data
             workflows, and custom frameworks for screening, backtesting, scenario analysis,
             attribution, and risk review.
@@ -342,7 +342,7 @@ export default function ProfilePage() {
           style={{ color: "var(--brand-navy-soft)" }}
         >
           <p>
-            The value of TDR lies in the combination of perspectives. Few fixed income
+            The value of DD lies in the combination of perspectives. Few fixed income
             practitioners have worked across hedge funds, insurance balance sheets, treasury
             risk, banking, and sell-side rates derivatives. That breadth allows market questions
             to be approached not only as trade ideas, but as decisions shaped by constraints,

@@ -7,7 +7,7 @@ import { getFeaturedNotes } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "The Decision Room",
+  title: "Decision Desk",
   description:
     "Fixed income notes, frameworks, and decision support for serious market participants.",
   path: "/",
@@ -26,7 +26,7 @@ export default async function Home() {
               Fixed income notes, frameworks, and decision support for serious market participants
             </h1>
             <p className="text-lg" style={{ color: "var(--brand-navy-soft)" }}>
-              The Decision Room is a practitioner-led platform focused on macro fixed
+              Decision Desk is a practitioner-led platform focused on macro fixed
               income, relative value, and market process. It brings together experience
               across hedge funds, insurance ALM, treasury risk, banking, structured
               products, exotics, and developed-market rates to publish thoughtful notes,
@@ -38,7 +38,7 @@ export default async function Home() {
                 Read Field Notes
               </Link>
               <Link href="/work-with-me" className="btn-secondary">
-                Work with TDR
+                Work with DD
               </Link>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default async function Home() {
       </Section>
 
       <Section
-        eyebrow="Work with TDR"
+        eyebrow="Work with DD"
         title="A second pair of eyes for complex fixed income decisions"
       >
         <div className="card space-y-4 max-w-4xl">

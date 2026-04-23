@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "The Decision Room",
-  domain: "the-decision-room.com",
-  url: "https://the-decision-room.com",
-  contactEmail: "info@the-decision-room.com",
+  name: "Decision Desk",
+  domain: "decisiondesk.co.uk",
+  url: "https://decisiondesk.co.uk",
+  contactEmail: "info@decisiondesk.co.uk",
   social: {
     x: {
-      handle: "@decisionroomX",
-      url: "https://x.com/decisionroomX",
+      handle: "@decisiondeskx",
+      url: "https://x.com/decisiondeskx",
     },
     instagram: {
-      handle: "decisionroomig",
-      url: "https://instagram.com/decisionroomig",
+      handle: "decisiondeskig",
+      url: "https://instagram.com/decisiondeskig",
     },
     linkedin: {
-      handle: "decision-room-4a3839403",
-      url: "https://www.linkedin.com/in/decision-room-4a3839403",
+      handle: "decision-desk-4a3839403",
+      url: "https://www.linkedin.com/in/decision-desk-4a3839403",
     },
   },
   description:
@@ -27,7 +27,7 @@ export const defaultOpenGraphImage = {
   url: `${siteConfig.url}/images/brand/logo-trimmed.png`,
   width: 1024,
   height: 576,
-  alt: "The Decision Room",
+  alt: "Decision Desk",
 };
 
 type MetadataInput = {

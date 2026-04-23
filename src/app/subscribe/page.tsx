@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Subscribe",
-  description: "Subscribe to The Decision Room updates and notes.",
+  description: "Subscribe to Decision Desk updates and notes.",
   path: "/subscribe",
 });
 

@@ -1,6 +1,6 @@
-# The Decision Room
+# Decision Desk
 
-Professional website for `the-decision-room.com`, built with Next.js App Router, TypeScript, Tailwind CSS, markdown-based Notes content, and tool pages with Stripe checkout links and webhook delivery support.
+Professional website for `decisiondesk.co.uk`, built with Next.js App Router, TypeScript, Tailwind CSS, markdown-based Notes content, and tool pages with Stripe checkout links and webhook delivery support.
 
 ## Stack
 
@@ -48,6 +48,6 @@ Key integrations:
 
 - Recommended: Vercel or Cloudflare Pages.
 - Configure all environment variables in hosting platform settings.
-- Point domain DNS for `the-decision-room.com`.
+- Point domain DNS for `decisiondesk.co.uk`.
 - Configure Stripe webhook endpoint:
-  - `https://the-decision-room.com/api/stripe/webhook`
+  - `https://decisiondesk.co.uk/api/stripe/webhook`

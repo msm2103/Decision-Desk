@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Disclaimer",
-  description: "Website and publication disclaimer for The Decision Room.",
+  description: "Website and publication disclaimer for Decision Desk.",
   path: "/disclaimer",
 });
 

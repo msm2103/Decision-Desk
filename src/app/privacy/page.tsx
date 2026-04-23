@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
-  description: "Privacy policy for The Decision Room website and forms.",
+  description: "Privacy policy for Decision Desk website and forms.",
   path: "/privacy",
 });
 
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           You may request deletion or correction of your personal data by emailing
-          info@the-decision-room.com.
+          info@decisiondesk.co.uk.
         </p>
       </div>
     </Section>

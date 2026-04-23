@@ -16,9 +16,9 @@ type AudienceNode = {
 };
 
 const data = {
-  pageTitle: "TDR Can Help",
+  pageTitle: "DD Can Help",
   center: {
-    title: "Who Can TDR Help?",
+    title: "Who Can DD Help?",
     subtitle: "Interactive client map",
     description: "",
   },
@@ -146,7 +146,7 @@ export function InteractiveClientServicesMindMap() {
             </div>
             <h3 className="mt-3 heading-serif text-3xl md:text-4xl text-slate-900">{data.pageTitle}</h3>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 md:text-base">
-              A simple clickable mind map showing who (and how) TDR help
+              A simple clickable mind map showing who (and how) DD help
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
