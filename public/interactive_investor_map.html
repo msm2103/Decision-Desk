@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Investor Mind Map</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: rgba(10, 19, 36, 0.82);
+      --panel-2: rgba(17, 29, 52, 0.88);
+      --text: #eef4ff;
+      --muted: #9fb0cd;
+      --line: rgba(255,255,255,0.10);
+      --accent-1: #7dd3fc;
+      --accent-2: #a78bfa;
+      --accent-3: #34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(125, 211, 252, 0.12), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.16), transparent 32%),
+        linear-gradient(180deg, #07101d 0%, #091526 100%);
+      color: var(--text);
+      min-height: 100%;
+    }
+
+    .widget-shell {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .widget {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .widget::before,
+    .widget::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: blur(80px);
+      opacity: 0.22;
+    }
+
+    .widget::before {
+      top: -110px;
+      left: -140px;
+      background: var(--accent-1);
+    }
+
+    .widget::after {
+      right: -120px;
+      bottom: -150px;
+      background: var(--accent-2);
+    }
+
+    .header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      padding: 28px 28px 10px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      margin: 14px 0 8px;
+      font-size: clamp(28px, 5vw, 54px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 64ch;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding-bottom: 8px;
+    }
+
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+
+    .body {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      padding: 16px 28px 28px;
+    }
+
+    .map-panel,
+    .detail-panel {
+      min-height: 680px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+    }
+
+    .map-panel {
+      position: relative;
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .map-canvas {
+      position: relative;
+      height: 100%;
+      min-height: 640px;
+      border-radius: calc(var(--radius) - 8px);
+      background:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 65%);
+      background-size: 28px 28px, 28px 28px, auto;
+      overflow: hidden;
+    }
+
+    .center-orb {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 190px;
+      height: 190px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
+      box-shadow: inset 0 0 40px rgba(255,255,255,0.05), 0 20px 60px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      z-index: 2;
+    }
+
+    .center-orb h2 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .center-orb p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      border: 1px dashed rgba(255,255,255,0.10);
+      pointer-events: none;
+    }
+
+    .ring.r1 { width: 340px; height: 340px; }
+    .ring.r2 { width: 560px; height: 560px; }
+
+    .connector {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      transform-origin: top center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.40), rgba(255,255,255,0.06));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .node {
+      position: absolute;
+      width: 220px;
+      min-height: 132px;
+      padding: 18px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+      text-align: left;
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.20);
+      z-index: 3;
+      backdrop-filter: blur(10px);
+    }
+
+    .node:hover,
+    .node:focus-visible {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(255,255,255,0.30);
+      outline: none;
+    }
+
+    .node.active {
+      transform: translateY(-8px) scale(1.04);
+      border-color: rgba(255,255,255,0.35);
+      box-shadow: 0 26px 70px rgba(0,0,0,0.32);
+    }
+
+    .node-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 10px;
+    }
+
+    .node h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .node p {
+      margin: 0;
+      color: rgba(255,255,255,0.76);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .node.asset { box-shadow: 0 18px 60px rgba(125, 211, 252, 0.14); }
+    .node.pm { box-shadow: 0 18px 60px rgba(167, 139, 250, 0.16); }
+    .node.peers { box-shadow: 0 18px 60px rgba(52, 211, 153, 0.14); }
+
+    .node-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .asset .node-badge { background: rgba(125, 211, 252, 0.18); color: var(--accent-1); }
+    .pm .node-badge { background: rgba(167, 139, 250, 0.18); color: var(--accent-2); }
+    .peers .node-badge { background: rgba(52, 211, 153, 0.18); color: var(--accent-3); }
+
+    .floating-chip {
+      position: absolute;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      font-size: 13px;
+      pointer-events: none;
+      transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+
+    .floating-chip.dimmed {
+      opacity: 0.28;
+      transform: scale(0.96);
+    }
+
+    .detail-panel {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .detail-top {
+      padding: 24px 24px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    }
+
+    .detail-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .detail-title {
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .detail-summary {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 18px 24px 24px;
+      overflow: auto;
+    }
+
+    .section-card {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      background: var(--panel-2);
+      padding: 16px;
+    }
+
+    .section-card h4 {
+      margin: 0 0 14px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.74);
+    }
+
+    .pill-list,
+    .bullet-list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pill-list li {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 14px;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .bullet-list {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding: 0 0 0 18px;
+      color: rgba(255,255,255,0.90);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.65;
+    }
+
+    .fit-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .fit-card {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .fit-label {
+      display: block;
+      color: rgba(255,255,255,0.60);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .fit-value {
+      display: block;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .fit-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 6px;
+    }
+
+    .cta {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.20);
+      outline: none;
+    }
+
+    .footer-note {
+      padding: 0 24px 24px;
+      color: rgba(255,255,255,0.58);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1080px) {
+      .body { grid-template-columns: 1fr; }
+      .map-panel, .detail-panel { min-height: auto; }
+      .map-canvas { min-height: 560px; }
+      .title { max-width: none; }
+    }
+
+    @media (max-width: 760px) {
+      .widget-shell { padding: 14px; }
+      .header, .body { padding-left: 16px; padding-right: 16px; }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 18px;
+      }
+      .legend { justify-content: flex-start; }
+      .map-panel { padding: 10px; }
+      .map-canvas {
+        min-height: 840px;
+        background-size: 22px 22px, 22px 22px, auto;
+      }
+      .center-orb {
+        width: 150px;
+        height: 150px;
+        top: 14%;
+      }
+      .center-orb h2 { font-size: 22px; }
+      .ring { display: none; }
+      .node {
+        width: calc(100% - 24px);
+        left: 12px !important;
+        transform: none !important;
+      }
+      .node.active { transform: none !important; }
+      .connector { display: none; }
+      .fit-strip { grid-template-columns: 1fr; }
+      .floating-chip { display: none; }
+      .detail-top, .detail-grid, .footer-note { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="widget-shell">
+    <section class="widget" aria-label="Interactive investor mind map">
+      <div class="header">
+        <div>
+          <div class="eyebrow">Interactive audience map</div>
+          <h1 class="title">Who are you solving for?</h1>
+          <p class="subtitle">
+            Click each audience group to explore where they fit, what they care about, what examples resonate, and what outcomes your work can deliver.
+          </p>
+        </div>
+        <div class="legend" aria-hidden="true">
+          <div class="legend-chip"><span class="legend-dot" style="background: var(--accent-1);"></span> Institutional Asset Management</div>
+          <div class="legend-chip"><span class="legend-dot" style="background: var(--accent-2);"></span> Portfolio Management</div>
+          <div class="legend-chip"><span class="legend-dot" style="background: var(--accent-3);"></span> Industry peers</div>
+        </div>
+      </div>
+
+      <div class="body">
+        <div class="map-panel">
+          <div class="map-canvas" id="mapCanvas">
+            <div class="ring r1"></div>
+            <div class="ring r2"></div>
+
+            <div class="center-orb">
+              <div>
+                <h2>Rates &amp; portfolio intelligence</h2>
+                <p>Audience, needs, use cases, and outcomes</p>
+              </div>
+            </div>
+
+            <div class="connector" id="connector-asset"></div>
+            <div class="connector" id="connector-pm"></div>
+            <div class="connector" id="connector-peers"></div>
+
+            <button class="node asset" id="node-asset" type="button" aria-controls="detailTitle" aria-pressed="true">
+              <div class="node-kicker"><span class="node-badge">1</span> Core audience</div>
+              <h3>Institutional Asset Management</h3>
+              <p>ALCO, senior management, insurance and bank ALM</p>
+            </button>
+
+            <button class="node pm" id="node-pm" type="button" aria-controls="detailTitle" aria-pressed="false">
+              <div class="node-kicker"><span class="node-badge">2</span> Core audience</div>
+              <h3>Portfolio Management</h3>
+              <p>Hedge fund managers and trading desks</p>
+            </button>
+
+            <button class="node peers" id="node-peers" type="button" aria-controls="detailTitle" aria-pressed="false">
+              <div class="node-kicker"><span class="node-badge">3</span> Core audience</div>
+              <h3>Industry peers</h3>
+              <p>Newcomers to seasoned experts</p>
+            </button>
+
+            <div class="floating-chip" data-tags="frameworks,outcomes" style="top: 12%; left: 8%;">Duration frameworks</div>
+            <div class="floating-chip" data-tags="macro,pm" style="top: 20%; right: 8%;">Macro strategy</div>
+            <div class="floating-chip" data-tags="tooling,peers,outcomes" style="bottom: 15%; left: 10%;">Dashboards</div>
+            <div class="floating-chip" data-tags="pm,execution" style="bottom: 20%; right: 10%;">Alpha to execution</div>
+            <div class="floating-chip" data-tags="asset,capital" style="top: 50%; left: 4%;">Capital efficiency</div>
+            <div class="floating-chip" data-tags="scenario,outcomes" style="top: 58%; right: 4%;">Scenario analysis</div>
+          </div>
+        </div>
+
+        <aside class="detail-panel" aria-live="polite">
+          <div class="detail-top">
+            <div class="detail-type" id="detailType">Institutional audience</div>
+            <h2 class="detail-title" id="detailTitle">Institutional Asset Management</h2>
+            <p class="detail-summary" id="detailSummary"></p>
+          </div>
+
+          <div class="detail-grid">
+            <section class="section-card">
+              <h4>Member examples</h4>
+              <ul class="pill-list" id="memberList"></ul>
+            </section>
+
+            <section class="section-card">
+              <h4>Topic focus</h4>
+              <ul class="pill-list" id="topicList"></ul>
+            </section>
+
+            <section class="section-card">
+              <h4>Representative case studies</h4>
+              <ul class="bullet-list" id="caseList"></ul>
+            </section>
+
+            <section class="section-card">
+              <h4>Example product outcomes</h4>
+              <ul class="pill-list" id="outcomeList"></ul>
+            </section>
+
+            <section class="section-card">
+              <h4>How this helps</h4>
+              <ul class="bullet-list" id="helpList"></ul>
+              <div class="cta-row">
+                <button class="cta" id="copySelection" type="button">Copy audience summary</button>
+                <button class="cta" id="nextAudience" type="button">Show next audience</button>
+              </div>
+            </section>
+          </div>
+
+          <div class="footer-note">
+            This component is fully self-contained. You can embed it directly in a page, or place it inside an iframe. Edit the audience data in the <code>const data</code> object.
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const sharedOutcomes = [
+      'Market monitors and dashboards',
+      'Scenario analysis',
+      'Investment frameworks',
+      'Trading tools (identification, sizing, analysis, back-testing engine)',
+      'Portfolio construction and risk management',
+      'Process improvement'
+    ];
+
+    const data = {
+      asset: {
+        type: 'Institutional audience',
+        title: 'Institutional Asset Management',
+        summary: 'For constrained fixed income allocators who need practical, market-aware solutions that fit real-world liability, capital, and governance constraints.',
+        members: [
+          'ALCO members',
+          'Senior management',
+          'Insurance ALM teams',
+          'Bank ALM teams'
+        ],
+        topics: [
+          'Constrained investing and optimal market solution design',
+          'Duration and cross-market allocation frameworks',
+          'Fixed income macro strategy'
+        ],
+        cases: [
+          'Adding convexity to fixed income portfolios to improve capital efficiency.',
+          'Bank structural hedge optimisation through the cycle.'
+        ],
+        outcomes: sharedOutcomes,
+        help: [
+          'Translate macro views into institution-ready portfolio decisions.',
+          'Frame trade-offs across carry, convexity, duration, and capital usage.',
+          'Support committee-level clarity with structured frameworks and scenario tools.'
+        ],
+        tags: ['asset', 'frameworks', 'outcomes', 'capital']
+      },
+      pm: {
+        type: 'Portfolio audience',
+        title: 'Portfolio Management',
+        summary: 'For hedge funds and trading desks focused on alpha generation, expression quality, and repeatable execution from thesis to realised PnL.',
+        members: [
+          'Hedge fund managers',
+          'Trading desks'
+        ],
+        topics: [
+          'Portfolio construction techniques',
+          'Alpha generation from thesis to execution',
+          'Financial modelling and trading tools',
+          'What hedge funds are looking for'
+        ],
+        cases: [
+          'Generating alpha in forward swap space.',
+          'Bond selection.',
+          'Auction strategies.',
+          'How to build and manage a macro rates portfolio.',
+          'Trading the narrative.'
+        ],
+        outcomes: sharedOutcomes,
+        help: [
+          'Convert market narratives into clean, tradable structures.',
+          'Improve idea selection, sizing, and implementation discipline.',
+          'Link research, risk, and execution through a repeatable process.'
+        ],
+        tags: ['pm', 'macro', 'execution', 'outcomes']
+      },
+      peers: {
+        type: 'Industry audience',
+        title: 'Industry peers',
+        summary: 'For institutional fixed income professionals from newcomers to seasoned experts seeking sharper process, stronger tooling, and thoughtful challenge.',
+        members: [
+          'Institutional fixed income newcomers',
+          'Mid-level market professionals',
+          'Seasoned fixed income experts'
+        ],
+        topics: [
+          'Process enhancement and tooling',
+          'Cutting edge alpha techniques',
+          'Thoughtful discussion and respectful challenge'
+        ],
+        cases: [
+          'Framework-driven market discussion that improves decision quality.',
+          'Tooling upgrades that reduce noise and increase repeatability.'
+        ],
+        outcomes: sharedOutcomes,
+        help: [
+          'Share practical frameworks peers can adopt quickly.',
+          'Create better discussion anchors for collaborative analysis.',
+          'Demonstrate how process improvements compound over time.'
+        ],
+        tags: ['peers', 'tooling', 'scenario', 'outcomes']
+      }
+    };
+
+    const nodeEls = {
+      asset: document.getElementById('node-asset'),
+      pm: document.getElementById('node-pm'),
+      peers: document.getElementById('node-peers')
+    };
+
+    const detailType = document.getElementById('detailType');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailSummary = document.getElementById('detailSummary');
+    const memberList = document.getElementById('memberList');
+    const topicList = document.getElementById('topicList');
+    const caseList = document.getElementById('caseList');
+    const outcomeList = document.getElementById('outcomeList');
+    const helpList = document.getElementById('helpList');
+    const chips = Array.from(document.querySelectorAll('.floating-chip'));
+    const copySelection = document.getElementById('copySelection');
+    const nextAudience = document.getElementById('nextAudience');
+    const connectorEls = {
+      asset: document.getElementById('connector-asset'),
+      pm: document.getElementById('connector-pm'),
+      peers: document.getElementById('connector-peers')
+    };
+
+    let currentKey = 'asset';
+    const order = ['asset', 'pm', 'peers'];
+
+    function positionNodes() {
+      const mobile = window.innerWidth <= 760;
+      if (mobile) {
+        nodeEls.asset.style.top = '240px';
+        nodeEls.pm.style.top = '408px';
+        nodeEls.peers.style.top = '576px';
+        return;
+      }
+
+      const positions = {
+        asset: { top: '18%', left: '10%' },
+        pm: { top: '18%', right: '8%' },
+        peers: { bottom: '12%', left: '50%', translateX: '-50%' }
+      };
+
+      Object.entries(positions).forEach(([key, pos]) => {
+        const el = nodeEls[key];
+        el.style.top = pos.top || 'auto';
+        el.style.bottom = pos.bottom || 'auto';
+        el.style.left = pos.left || 'auto';
+        el.style.right = pos.right || 'auto';
+        el.style.transform = pos.translateX ? `translateX(${pos.translateX})` : 'none';
+      });
+    }
+
+    function positionConnectors() {
+      const mobile = window.innerWidth <= 760;
+      if (mobile) return;
+
+      const canvas = document.getElementById('mapCanvas').getBoundingClientRect();
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+
+      Object.entries(nodeEls).forEach(([key, el]) => {
+        const rect = el.getBoundingClientRect();
+        const ex = rect.left - canvas.left + rect.width / 2;
+        const ey = rect.top - canvas.top + rect.height / 2;
+        const dx = ex - cx;
+        const dy = ey - cy;
+        const length = Math.sqrt(dx * dx + dy * dy) - rect.height * 0.35;
+        const angle = Math.atan2(dx, -dy) * (180 / Math.PI);
+        const connector = connectorEls[key];
+        connector.style.height = `${Math.max(40, length)}px`;
+        connector.style.transform = `translate(-50%, 0) rotate(${angle}deg)`;
+      });
+    }
+
+    function fillList(el, items, template = (item) => `<li>${item}</li>`) {
+      el.innerHTML = items.map(template).join('');
+    }
+
+    function setActive(key, updateHash = true) {
+      currentKey = key;
+      const audience = data[key];
+
+      Object.entries(nodeEls).forEach(([k, el]) => {
+        const active = k === key;
+        el.classList.toggle('active', active);
+        el.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      detailType.textContent = audience.type;
+      detailTitle.textContent = audience.title;
+      detailSummary.textContent = audience.summary;
+
+      fillList(memberList, audience.members);
+      fillList(topicList, audience.topics);
+      fillList(caseList, audience.cases);
+      fillList(outcomeList, audience.outcomes);
+      fillList(helpList, audience.help);
+
+      chips.forEach(chip => {
+        const tagList = (chip.dataset.tags || '').split(',');
+        const show = audience.tags.some(tag => tagList.includes(tag));
+        chip.classList.toggle('dimmed', !show);
+      });
+
+      if (updateHash) {
+        history.replaceState(null, '', `#${key}`);
+      }
+    }
+
+    Object.entries(nodeEls).forEach(([key, el]) => {
+      el.addEventListener('click', () => setActive(key));
+    });
+
+    nextAudience.addEventListener('click', () => {
+      const idx = order.indexOf(currentKey);
+      const nextKey = order[(idx + 1) % order.length];
+      setActive(nextKey);
+    });
+
+    copySelection.addEventListener('click', async () => {
+      const audience = data[currentKey];
+      const text = [
+        audience.title,
+        '',
+        'Member examples:',
+        ...audience.members.map(item => `- ${item}`),
+        '',
+        'Topic focus:',
+        ...audience.topics.map(item => `- ${item}`),
+        '',
+        'Representative case studies:',
+        ...audience.cases.map(item => `- ${item}`),
+        '',
+        'Example product outcomes:',
+        ...audience.outcomes.map(item => `- ${item}`)
+      ].join('\n');
+
+      try {
+        await navigator.clipboard.writeText(text);
+        copySelection.textContent = 'Copied';
+        setTimeout(() => copySelection.textContent = 'Copy audience summary', 1400);
+      } catch (error) {
+        copySelection.textContent = 'Copy failed';
+        setTimeout(() => copySelection.textContent = 'Copy audience summary', 1400);
+      }
+    });
+
+    function initFromHash() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && data[hash]) {
+        setActive(hash, false);
+      } else {
+        setActive('asset', false);
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      positionNodes();
+      positionConnectors();
+    });
+
+    window.InvestorMapWidget = {
+      setGroup: (key) => {
+        if (data[key]) setActive(key);
+      },
+      getGroup: () => currentKey,
+      data
+    };
+
+    positionNodes();
+    initFromHash();
+    setTimeout(positionConnectors, 30);
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#EBEEF6" />
+  <rect x="170" y="220" width="860" height="190" fill="#ffffff" stroke="#19304E" stroke-width="6" />
+  <rect x="184" y="234" width="832" height="162" fill="none" stroke="#19304E" stroke-width="2" />
+  <text x="220" y="335" fill="#19304E" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="700" letter-spacing="3">
+    THE DECI
+  </text>
+  <text x="560" y="335" fill="#CB9C3B" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="700">$</text>
+  <text x="610" y="335" fill="#19304E" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="700" letter-spacing="3">
+    ION ROOM
+  </text>
+</svg>
