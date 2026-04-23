@@ -18,16 +18,16 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b backdrop-blur" style={{ borderColor: "var(--brand-border)", background: "#EBEEF6F2" }}>
-      <div className="container-width h-16 py-2 flex items-center justify-between gap-4">
+      <div className="container-width py-2 flex flex-col gap-2 md:h-16 md:flex-row md:items-center md:justify-between">
         <BrandLogo small />
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="flex w-full items-center gap-2 overflow-x-auto whitespace-nowrap md:w-auto md:gap-6 md:overflow-visible">
           {navItems.map((item) => {
             const active = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3 py-1.5 text-sm transition ${
+                className={`rounded-md px-3 py-1.5 text-xs transition md:text-sm ${
                   active ? "font-medium shadow-sm" : "hover:opacity-80"
                 }`}
                 style={{
