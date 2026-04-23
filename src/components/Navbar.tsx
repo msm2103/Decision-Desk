@@ -29,7 +29,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3 py-1.5 text-xs transition md:text-sm ${
+                className={`rounded-md px-3 py-1.5 text-[18px] transition md:text-[20px] ${
                   active ? "font-medium shadow-sm" : "hover:opacity-80"
                 }`}
                 style={{
