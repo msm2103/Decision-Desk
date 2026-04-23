@@ -56,8 +56,8 @@ export default async function Home() {
       </section>
 
       <Section
-        eyebrow="Thoughtful notes and market process"
-        title="Featured practitioner's notes"
+        eyebrow="Featured practitioner's notes"
+        title="Thoughtful notes and market process"
         description="A publication stream focused on macro rates, relative value, ALM, and practical implementation."
       >
         <div className="grid md:grid-cols-3 gap-4">
@@ -68,8 +68,8 @@ export default async function Home() {
       </Section>
 
       <Section
-        eyebrow="A second pair of eyes for complex fixed income decisions"
-        title="Work with TDR"
+        eyebrow="Work with TDR"
+        title="A second pair of eyes for complex fixed income decisions"
       >
         <div className="card space-y-4 max-w-4xl">
           <ul className="space-y-2 list-disc pl-5" style={{ color: "var(--brand-navy-soft)" }}>
@@ -84,7 +84,7 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Subscribe for new notes" title="Stay updated">
+      <Section eyebrow="Stay updated" title="Subscribe for new notes">
         <div className="card max-w-2xl">
           <SubscribeForm compact />
         </div>
