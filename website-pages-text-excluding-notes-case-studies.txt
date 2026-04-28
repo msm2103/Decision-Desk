@@ -1,0 +1,136 @@
+Decision Desk Website Text Export
+Excludes note and case-study article body content.
+
+====================
+SHARED NAVIGATION
+====================
+Home
+About
+Notes
+Case Studies
+Contact
+Disclaimer
+
+====================
+HOME PAGE (/)
+====================
+Fixed income research notes, market frameworks, and illustrative trade case studies
+
+Decision Desk is a personal publication by Mark Martin. It shares fixed income research notes, market frameworks, and educational case studies intended to clarify thinking around rates, risk, and implementation.
+
+Read Notes
+View Case Studies
+
+15+ years across hedge funds, insurance asset management, treasury risk, and banking.
+Macro-aware developed-market rates relative value, derivatives, overlays, convexity, and ALM.
+Python, SQL, AI and Bloomberg-driven analytics for repeatable decision process and governance.
+
+Featured Notes
+Recent research and frameworks
+Selected notes on macro rates, relative value, and practical implementation ideas.
+
+====================
+ABOUT PAGE (/about)
+====================
+About
+Mark Martin
+Personal publication under the Decision Desk imprint.
+
+Mark Martin writes on fixed income markets from experience spanning hedge funds, insurance ALM, bank treasury risk, and sell-side rates derivatives. The focus is research quality, clear frameworks, and practical market interpretation.
+
+Expertise
+Core market focus
+Developed-market rates, relative value, duration and curve structure, risk framing, and implementation choices under real-world constraints.
+
+Philosophy
+Approach to research
+Markets are treated as probabilistic systems. The emphasis is on scenario awareness, return distribution quality, and disciplined risk framing rather than single-point forecasts.
+
+Process
+Research workflow
+- Macro regime framing
+- Structured idea screening
+- Trade appraisal and scenario testing
+- Review of outcomes and lessons
+
+Tooling
+Analytical toolkit
+Python, SQL, spreadsheet modelling, market data workflows, and lightweight automation for repeatable research and clearer risk communication.
+
+Contact
+General correspondence
+For general correspondence related to published notes and case studies, please use the contact page.
+
+====================
+CONTACT PAGE (/contact)
+====================
+Contact
+General correspondence
+For general correspondence, complete the form below or email info@decisiondesk.co.uk.
+
+Contact form labels and actions:
+Name
+Email
+Company / Organisation (optional)
+Message
+Send message
+Sending...
+
+====================
+DISCLAIMER PAGE (/disclaimer)
+====================
+Legal
+Disclaimer
+
+All content on Decision Desk reflects personal views only and does not represent the views of any employer, institution, or affiliated organisation.
+
+Material is provided for general information and educational purposes only. It is not investment advice, a recommendation, a solicitation, or an offer of investment services.
+
+Trade examples, case studies, and any portfolio-style snapshots are illustrative only. They are not live trade communications and should not be interpreted as instructions to transact.
+
+Markets involve risk and outcomes are uncertain. Users remain fully responsible for their own decisions, due diligence, and implementation choices.
+
+====================
+PRIVACY PAGE (/privacy)
+====================
+Legal
+Privacy Policy
+
+We collect personal data that you voluntarily provide through contact forms, primarily name, email, organisation, and message details.
+
+Contact enquiry data is retained only as needed to respond to requests and maintain a basic interaction record.
+
+Contact enquiries are used solely to respond to your request and to maintain a basic interaction record.
+
+We may use lightweight analytics to understand page usage and content engagement.
+
+You may request deletion or correction of your personal data by emailing info@decisiondesk.co.uk.
+
+====================
+TERMS PAGE (/terms)
+====================
+Legal
+Terms
+
+By using this website, you agree to these terms and to applicable laws in your jurisdiction.
+
+Content is published for general information and educational reading. It is not investment advice or a personalised recommendation.
+
+Redistribution, resale, or repackaging of site content is prohibited without written permission.
+
+No warranty is provided regarding completeness, timeliness, or fitness for any specific objective.
+
+We may update these terms from time to time. Continued use of the site constitutes acceptance of the latest version.
+
+====================
+SHARED FOOTER
+====================
+Personal fixed income research notes, market frameworks, and illustrative case studies. Views are personal and for general information only.
+
+info@decisiondesk.co.uk
+X (@decisiondeskx)
+Instagram (decisiondeskig)
+LinkedIn
+Disclaimer
+Privacy Policy
+Terms

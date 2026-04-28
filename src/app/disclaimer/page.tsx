@@ -12,22 +12,38 @@ export default function DisclaimerPage() {
     <Section eyebrow="Legal" title="Disclaimer">
       <div className="card text-slate-700 space-y-4">
         <p>
-          All content on Decision Desk reflects personal views only and does not
-          represent the views of any employer, institution, or affiliated organisation.
+          Decision Desk is a personal publication by Mark Martin. All content reflects
+          personal views only and does not represent the views of any employer, institution,
+          client, counterparty, or affiliated organisation.
         </p>
         <p>
-          Material is provided for general information and educational purposes only.
-          It is not investment advice, a recommendation, a solicitation, or an offer
-          of investment services.
+          Material on this site is provided for general information and educational purposes
+          only. It is not investment advice, a personal recommendation, a research product,
+          a solicitation, or an offer to provide investment, advisory, portfolio management,
+          execution, or consulting services.
         </p>
         <p>
-          Trade examples, case studies, and any portfolio-style snapshots are
-          illustrative only. They are not live trade communications and should not be
-          interpreted as instructions to transact.
+          Nothing on this site should be interpreted as a recommendation to buy, sell,
+          hold, hedge, finance, or otherwise transact in any security, derivative, currency,
+          rate, index, fund, or financial instrument.
         </p>
         <p>
-          Markets involve risk and outcomes are uncertain. Users remain fully responsible
-          for their own decisions, due diligence, and implementation choices.
+          Trade examples, market notes, case studies, model snapshots, and portfolio-style
+          illustrations are retrospective, selective, delayed, and educational unless clearly
+          stated otherwise. They are not live trade communications, trading signals, or
+          instructions to transact.
+        </p>
+        <p>
+          Any analysis is based on public information, assumptions, and personal interpretation
+          at the time of writing. Markets involve risk, conditions change, and outcomes are uncertain.
+        </p>
+        <p>
+          Readers remain fully responsible for their own decisions, due diligence, risk management,
+          and implementation choices. Professional advice should be sought where appropriate.
+        </p>
+        <p>
+          No content on Decision Desk should be assumed to reflect current positioning, employer
+          activity, confidential information, client activity, or any live investment process.
         </p>
       </div>
     </Section>

@@ -16,8 +16,14 @@ export default function TermsPage() {
           jurisdiction.
         </p>
         <p>
-          Content is published for general information and educational reading.
-          It is not investment advice or a personalised recommendation.
+          Decision Desk is a personal fixed income publication. Content is provided for
+          general information and educational reading only. It is not investment advice,
+          a personal recommendation, a solicitation, or an offer of services.
+        </p>
+        <p>
+          You are responsible for how you interpret and use any information on this site.
+          No content should be relied upon as the basis for an investment, trading, hedging,
+          financing, or portfolio decision.
         </p>
         <p>
           Redistribution, resale, or repackaging of site content is prohibited

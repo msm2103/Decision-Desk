@@ -8,8 +8,7 @@ export function Footer() {
       <div className="container-width py-10 space-y-6">
         <BrandLogo small />
         <p className="text-sm max-w-2xl" style={{ color: "var(--brand-navy-soft)" }}>
-          Personal fixed income research notes, market frameworks, and illustrative case studies.
-          Views are personal and for general information only.
+          Decision Desk is Mark Martin&apos;s personal fixed income publication: research notes, market frameworks, and illustrative educational case studies on rates, risk, relative value, and portfolio construction. Views are personal and for general information only.
         </p>
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm" style={{ color: "var(--brand-navy)" }}>
           <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>

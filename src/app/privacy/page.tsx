@@ -12,19 +12,25 @@ export default function PrivacyPage() {
     <Section eyebrow="Legal" title="Privacy Policy">
       <div className="card text-slate-700 space-y-4">
         <p>
-          We collect personal data that you voluntarily provide through contact forms,
-          primarily name, email, organisation, and message details.
+          Decision Desk collects personal data that you voluntarily provide through contact
+          forms or email correspondence. This may include your name, email address, organisation,
+          and message details.
         </p>
         <p>
-          Contact enquiry data is retained only as needed to respond to requests and
-          maintain a basic interaction record.
+          Contact enquiry data is used only to respond to your message, maintain a basic
+          correspondence record, and operate the site responsibly.
         </p>
         <p>
-          Contact enquiries are used solely to respond to your request and to maintain a
-          basic interaction record.
+          Decision Desk does not sell personal data and does not use contact details for
+          unrelated marketing campaigns.
         </p>
         <p>
-          We may use lightweight analytics to understand page usage and content engagement.
+          The site may use lightweight analytics to understand page usage, content engagement,
+          and technical performance.
+        </p>
+        <p>
+          Please do not submit confidential, proprietary, market-sensitive, or personal
+          financial information through the contact form.
         </p>
         <p>
           You may request deletion or correction of your personal data by emailing

@@ -6,7 +6,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About Mark Martin" },
   { href: "/notes", label: "Notes" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/contact", label: "Contact" },

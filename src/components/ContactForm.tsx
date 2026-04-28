@@ -89,6 +89,10 @@ export function ContactForm() {
         {status === "loading" ? "Sending..." : "Send message"}
       </button>
 
+      <p className="text-xs text-slate-600">
+        Please do not submit confidential information, trade instructions, mandate enquiries, or requests for investment advice.
+      </p>
+
       {message ? (
         <p className={`text-sm ${status === "error" ? "text-red-700" : "text-slate-700"}`}>
           {message}
