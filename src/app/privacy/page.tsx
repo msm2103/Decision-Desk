@@ -1,6 +1,9 @@
 import { Section } from "@/components/Section";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-static";
+export const revalidate = false;
+
 export const metadata = buildMetadata({
   title: "Privacy Policy",
   description: "Privacy policy for Decision Desk website and forms.",

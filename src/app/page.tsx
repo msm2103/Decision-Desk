@@ -5,6 +5,9 @@ import { Section } from "@/components/Section";
 import { getAllNotes, getFeaturedNotes } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-static";
+export const revalidate = false;
+
 export const metadata = buildMetadata({
   title: "Mark Martin | Decision Desk | Fixed Income Research",
   description:

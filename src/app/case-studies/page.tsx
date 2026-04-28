@@ -3,6 +3,9 @@ import { Section } from "@/components/Section";
 import { getAllNotes } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-static";
+export const revalidate = false;
+
 export const metadata = buildMetadata({
   title: "Fixed Income Case Studies | Decision Desk",
   description:

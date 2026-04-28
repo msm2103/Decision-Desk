@@ -21,9 +21,9 @@ export function Footer() {
           <a href={siteConfig.social.linkedin.url} target="_blank" rel="noreferrer">
             LinkedIn
           </a>
-          <Link href="/disclaimer">Disclaimer</Link>
-          <Link href="/privacy">Privacy Policy</Link>
-          <Link href="/terms">Terms</Link>
+          <Link href="/disclaimer" prefetch={false}>Disclaimer</Link>
+          <Link href="/privacy" prefetch={false}>Privacy Policy</Link>
+          <Link href="/terms" prefetch={false}>Terms</Link>
         </div>
       </div>
     </footer>

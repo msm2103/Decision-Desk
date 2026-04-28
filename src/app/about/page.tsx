@@ -2,6 +2,9 @@ import Link from "next/link";
 import { Section } from "@/components/Section";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-static";
+export const revalidate = false;
+
 export const metadata = buildMetadata({
   title: "About Mark Martin | Senior Fixed Income Portfolio Manager | Decision Desk",
   description:

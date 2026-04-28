@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/BrandLogo";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About Mark Martin" },
-  { href: "/notes", label: "Notes" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/contact", label: "Contact" },
-  { href: "/disclaimer", label: "Disclaimer" },
+  { href: "/", label: "Home", prefetch: true },
+  { href: "/about", label: "About Mark Martin", prefetch: true },
+  { href: "/notes", label: "Notes", prefetch: true },
+  { href: "/case-studies", label: "Case Studies", prefetch: true },
+  { href: "/contact", label: "Contact", prefetch: false },
+  { href: "/disclaimer", label: "Disclaimer", prefetch: false },
 ];
 
 export function Navbar() {
@@ -28,6 +28,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={item.prefetch}
                 className={`rounded-md px-3 py-1.5 text-[18px] transition md:text-[20px] ${
                   active ? "font-medium shadow-sm" : "hover:opacity-80"
                 }`}

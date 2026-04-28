@@ -1,6 +1,9 @@
 import { Section } from "@/components/Section";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-static";
+export const revalidate = false;
+
 export const metadata = buildMetadata({
   title: "Terms",
   description: "Terms of use for Decision Desk publication content.",

@@ -2,6 +2,9 @@ import { ContactForm } from "@/components/ContactForm";
 import { Section } from "@/components/Section";
 import { buildMetadata, siteConfig } from "@/lib/seo";
 
+export const dynamic = "force-static";
+export const revalidate = false;
+
 export const metadata = buildMetadata({
   title: "Contact",
   description:
