@@ -6,12 +6,11 @@ import { BrandLogo } from "@/components/BrandLogo";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/profile", label: "Profile" },
-  { href: "/guest-pms", label: "Guest PMs" },
-  { href: "/notes", label: "Field Notes" },
-  { href: "/playbook", label: "Playbook" },
-  { href: "/work-with-me", label: "Work with DD" },
+  { href: "/about", label: "About" },
+  { href: "/notes", label: "Notes" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/contact", label: "Contact" },
+  { href: "/disclaimer", label: "Disclaimer" },
 ];
 
 export function Navbar() {

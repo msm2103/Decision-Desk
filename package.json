@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "notes:manifest": "node scripts/generate-notes-manifest.mjs",
-    "guest-pms:approve": "node scripts/approve-guest-pm.mjs",
     "prebuild": "npm run notes:manifest",
     "build": "next build",
     "start": "next start",

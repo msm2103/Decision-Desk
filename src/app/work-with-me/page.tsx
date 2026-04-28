@@ -1,43 +1,11 @@
 import Link from "next/link";
-import { InteractiveClientServicesMindMap } from "@/components/InteractiveClientServicesMindMap";
 import { Section } from "@/components/Section";
 import { buildMetadata } from "@/lib/seo";
 
-const keyQuestions = [
-  {
-    label: "Curve",
-    text: "Where on the curve should you express your duration view?",
-  },
-  {
-    label: "Hedging Strategy",
-    text: "Should we extend, reduce, or redesign a structural deposit hedge?",
-  },
-  {
-    label: "Duration",
-    text: "How should interest-rate exposure be positioned across G4 curves under liability, capital, and accounting constraints?",
-  },
-  {
-    label: "Implementation",
-    text: "How do we systemise bond relative value without losing market judgment?",
-  },
-  {
-    label: "Portfolio Strategy",
-    text: "How do you build a regime-robust rates portfolio rather than a collection of isolated trades?",
-  },
-  {
-    label: "Product ",
-    text: "Should this view be expressed in cash, swaps, options, or a blended structure?",
-  },
-  {
-    label: "Trading",
-    text: "How do you turn a market view into a repeatable process for screening, selection, sizing, and review?",
-  },
-];
-
 export const metadata = buildMetadata({
-  title: "Work with DD",
+  title: "Notice",
   description:
-    "Collaboration on fixed income decisions: duration, curve positioning, hedging, RV, portfolio construction, and process.",
+    "Decision Desk is a personal publication and does not provide advisory or portfolio management services.",
   path: "/work-with-me",
 });
 
@@ -45,41 +13,18 @@ export default function WorkWithMePage() {
   return (
     <>
       <Section
-        eyebrow="Work with DD"
-        title="Structured collaboration for practical fixed income decisions"
-        description="DD advises institutional investors, treasury teams, and insurers on the practicalities of fixed income, helping turn market views into defensible strategy. Whether the challenge is duration, curve positioning, hedging, or portfolio construction, DD brings a structured framework and independent perspective to ensure decisions hold up under real-world market constraints."
+        eyebrow="Notice"
+        title="Decision Desk is a personal publication site"
+        description="This site does not offer advisory, consulting, recruitment, or portfolio management services."
       />
 
-      <Section title="Interactive Audience Map">
-        <InteractiveClientServicesMindMap />
-      </Section>
-
-      <Section title="Questions DD can help answer">
-        <ul className="card list-disc list-inside space-y-3 text-slate-700 px-6 py-4">
-          {keyQuestions.map((question) => (
-            <li key={question.label}>
-              <strong>{question.label}:</strong> {question.text}
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section title="Typical formats">
-        <ul className="card grid sm:grid-cols-2 gap-2 text-slate-700">
-          <li>One-off problem-solving conversations</li>
-          <li>Ongoing mentoring and sounding-board support</li>
-          <li>Framework and process review</li>
-          <li>Tooling, dashboards, and bespoke support</li>
-        </ul>
-      </Section>
-
-      <Section title="Get in touch">
+      <Section title="General correspondence">
         <div className="card max-w-2xl space-y-4">
           <p className="text-slate-700">
-          If you have a specific fixed income decision, process bottleneck, or implementation challenge, Decision Desk would be happy to talk it through with you
+            For questions about published notes or case studies, please use the contact page.
           </p>
           <Link href="/contact" className="btn-primary w-fit">
-            Get in touch
+            Contact
           </Link>
         </div>
       </Section>

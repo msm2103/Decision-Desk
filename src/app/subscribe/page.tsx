@@ -12,7 +12,7 @@ export default function SubscribePage() {
   return (
     <Section
       eyebrow="Subscribe"
-      title="Subscribe for notes and tool updates"
+      title="Subscribe for research note updates"
       description="Email-only signup with unsubscribe support."
     >
       <div className="card max-w-2xl">

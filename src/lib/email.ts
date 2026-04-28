@@ -32,7 +32,6 @@ export async function sendContactEnquiryEmail(payload: {
   name: string;
   email: string;
   organisation?: string;
-  enquiryType: string;
   message: string;
 }) {
   const html = `
@@ -40,14 +39,13 @@ export async function sendContactEnquiryEmail(payload: {
     <p><strong>Name:</strong> ${payload.name}</p>
     <p><strong>Email:</strong> ${payload.email}</p>
     <p><strong>Company / Organisation:</strong> ${payload.organisation || "Not provided"}</p>
-    <p><strong>Enquiry type:</strong> ${payload.enquiryType}</p>
     <p><strong>Message:</strong></p>
     <p>${payload.message.replace(/\n/g, "<br />")}</p>
   `;
 
   return sendTransactionalEmail({
     to: siteConfig.contactEmail,
-    subject: `New enquiry: ${payload.enquiryType}`,
+    subject: "New correspondence from Decision Desk",
     html,
   });
 }

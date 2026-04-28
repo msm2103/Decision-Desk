@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Decision Desk",
   description:
-    "Fixed income notes, frameworks, and decision support for serious market participants.",
+    "Personal fixed income research notes, market frameworks, and illustrative educational trade case studies.",
   path: "/",
 });
 
@@ -23,22 +23,19 @@ export default async function Home() {
           <div className="max-w-4xl space-y-6">
             <BrandLogo large />
             <h1 className="heading-serif text-4xl md:text-6xl leading-tight">
-              Fixed income notes, frameworks, and decision support for serious market participants
+              Fixed income research notes, market frameworks, and illustrative trade case studies
             </h1>
             <p className="text-lg" style={{ color: "var(--brand-navy-soft)" }}>
-              Decision Desk is a practitioner-led platform focused on macro fixed
-              income, relative value, and market process. It brings together experience
-              across hedge funds, insurance ALM, treasury risk, banking, structured
-              products, exotics, and developed-market rates to publish thoughtful notes,
-              share practical frameworks, and help investors and institutions think more
-              clearly about complex fixed income questions.
+              Decision Desk is a personal publication by Mark Martin. It shares
+              fixed income research notes, market frameworks, and educational case
+              studies intended to clarify thinking around rates, risk, and implementation.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/notes" className="btn-primary">
-                Read Field Notes
+                Read Notes
               </Link>
-              <Link href="/work-with-me" className="btn-secondary">
-                Work with DD
+              <Link href="/case-studies" className="btn-secondary">
+                View Case Studies
               </Link>
             </div>
           </div>
@@ -56,31 +53,14 @@ export default async function Home() {
       </section>
 
       <Section
-        eyebrow="Featured practitioner's notes"
-        title="Thoughtful notes and market process"
-        description="A publication stream focused on macro rates, relative value, ALM, and practical implementation."
+        eyebrow="Featured Notes"
+        title="Recent research and frameworks"
+        description="Selected notes on macro rates, relative value, and practical implementation ideas."
       >
         <div className="grid md:grid-cols-3 gap-4">
           {featuredNotes.map((note) => (
             <NoteCard key={note.slug} note={note} />
           ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Work with DD"
-        title="A second pair of eyes for complex fixed income decisions"
-      >
-        <div className="card space-y-4 max-w-4xl">
-          <ul className="space-y-2 list-disc pl-5" style={{ color: "var(--brand-navy-soft)" }}>
-            <li>Where on the curve should you express your duration view?</li>
-            <li>Should we extend, reduce, or redesign a structural hedge?</li>
-            <li>How should rate exposure be positioned across G4 curves?</li>
-            <li>How do we systemise bond RV and build a regime-robust rates portfolio?</li>
-          </ul>
-          <Link href="/work-with-me" className="btn-secondary w-fit">
-            Explore collaboration formats
-          </Link>
         </div>
       </Section>
 

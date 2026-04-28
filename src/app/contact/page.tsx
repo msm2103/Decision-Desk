@@ -5,7 +5,7 @@ import { buildMetadata, siteConfig } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Contact",
   description:
-    "Contact Decision Desk for mentoring, market problem-solving, idea review, or collaboration enquiries.",
+    "General correspondence for Decision Desk notes and case studies.",
   path: "/contact",
 });
 
@@ -13,8 +13,8 @@ export default function ContactPage() {
   return (
     <Section
       eyebrow="Contact"
-      title="Enquiries and collaboration"
-      description={`For mentoring, market problem-solving, idea review, tool support, or general enquiries, complete the form below or email ${siteConfig.contactEmail}.`}
+      title="General correspondence"
+      description={`For general correspondence, complete the form below or email ${siteConfig.contactEmail}.`}
     >
       <ContactForm />
     </Section>

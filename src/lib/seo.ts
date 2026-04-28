@@ -20,7 +20,7 @@ export const siteConfig = {
     },
   },
   description:
-    "Fixed income notes, frameworks, and decision support for serious market participants.",
+    "Personal fixed income research notes, market frameworks, and illustrative educational trade case studies.",
 };
 
 export const defaultOpenGraphImage = {

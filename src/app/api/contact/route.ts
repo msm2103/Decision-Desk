@@ -11,7 +11,6 @@ export async function POST(request: Request) {
       name?: string;
       email?: string;
       organisation?: string;
-      enquiryType?: string;
       message?: string;
       website?: string;
     };
@@ -20,7 +19,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Submitted." });
     }
 
-    if (!body.name || !body.email || !body.enquiryType || !body.message) {
+    if (!body.name || !body.email || !body.message) {
       return NextResponse.json({ message: "Missing required fields." }, { status: 400 });
     }
 
@@ -32,7 +31,6 @@ export async function POST(request: Request) {
       name: body.name,
       email: body.email,
       organisation: body.organisation,
-      enquiryType: body.enquiryType,
       message: body.message,
     });
 

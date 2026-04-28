@@ -8,8 +8,8 @@ export function Footer() {
       <div className="container-width py-10 space-y-6">
         <BrandLogo small />
         <p className="text-sm max-w-2xl" style={{ color: "var(--brand-navy-soft)" }}>
-          Practitioner-led fixed income notes, frameworks, and decision support
-          for serious market participants.
+          Personal fixed income research notes, market frameworks, and illustrative case studies.
+          Views are personal and for general information only.
         </p>
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm" style={{ color: "var(--brand-navy)" }}>
           <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>

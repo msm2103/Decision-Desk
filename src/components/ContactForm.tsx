@@ -2,19 +2,6 @@
 
 import { FormEvent, useState } from "react";
 
-const enquiryTypes = [
-  "General enquiry",
-  "Mentoring",  
-  "Market problem solving",
-  "Idea review",
-  "Interest rate risk hedging",
-  "ALM (Treasury/Insurance)",
-  "Portfolio management",
-  "Tool development (scenarios, models, scanners)",
-  "Trading strategy",
-  "Collaboration",
-];
-
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -27,7 +14,6 @@ export function ContactForm() {
       name: String(formData.get("name") || ""),
       email: String(formData.get("email") || ""),
       organisation: String(formData.get("organisation") || ""),
-      enquiryType: String(formData.get("enquiryType") || ""),
       message: String(formData.get("message") || ""),
       website: String(formData.get("website") || ""),
     };
@@ -82,22 +68,6 @@ export function ContactForm() {
       </label>
 
       <label className="space-y-1 text-sm text-slate-700 block">
-        Enquiry type
-        <select
-          name="enquiryType"
-          required
-          className="h-11 w-full rounded-md border border-slate-300 px-3 bg-white"
-          defaultValue={enquiryTypes[0]}
-        >
-          {enquiryTypes.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className="space-y-1 text-sm text-slate-700 block">
         Message
         <textarea
           name="message"
@@ -116,7 +86,7 @@ export function ContactForm() {
       />
 
       <button type="submit" disabled={status === "loading"} className="btn-primary">
-        {status === "loading" ? "Sending..." : "Send enquiry"}
+        {status === "loading" ? "Sending..." : "Send message"}
       </button>
 
       {message ? (

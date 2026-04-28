@@ -11,11 +11,24 @@ export default function DisclaimerPage() {
   return (
     <Section eyebrow="Legal" title="Disclaimer">
       <div className="card text-slate-700 space-y-4">
-        <p>All content is for informational and educational purposes only.</p>
-        <p>No content on this site constitutes investment, legal, tax, or accounting advice.</p>
-        <p>Views and opinions are subject to change without notice.</p>
-        <p>No guarantee is made regarding outcomes, performance, or suitability for any specific objective.</p>
-        <p>Users remain responsible for their own decisions, risk assessment, and implementation choices.</p>
+        <p>
+          All content on Decision Desk reflects personal views only and does not
+          represent the views of any employer, institution, or affiliated organisation.
+        </p>
+        <p>
+          Material is provided for general information and educational purposes only.
+          It is not investment advice, a recommendation, a solicitation, or an offer
+          of investment services.
+        </p>
+        <p>
+          Trade examples, case studies, and any portfolio-style snapshots are
+          illustrative only. They are not live trade communications and should not be
+          interpreted as instructions to transact.
+        </p>
+        <p>
+          Markets involve risk and outcomes are uncertain. Users remain fully responsible
+          for their own decisions, due diligence, and implementation choices.
+        </p>
       </div>
     </Section>
   );

@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Terms",
-  description: "Terms of use for Decision Desk website and digital tools.",
+  description: "Terms of use for Decision Desk publication content.",
   path: "/terms",
 });
 
@@ -16,16 +16,16 @@ export default function TermsPage() {
           jurisdiction.
         </p>
         <p>
-          Paid tools and digital products are licensed for personal or internal
-          organisational use only unless otherwise agreed.
+          Content is published for general information and educational reading.
+          It is not investment advice or a personalised recommendation.
         </p>
         <p>
-          Redistribution, resale, repackaging, or public sharing of paid tool content is
-          prohibited without written consent.
+          Redistribution, resale, or repackaging of site content is prohibited
+          without written permission.
         </p>
         <p>
-          Because products are digital and immediately accessible, refunds are generally not
-          offered except where required by law.
+          No warranty is provided regarding completeness, timeliness, or fitness
+          for any specific objective.
         </p>
         <p>
           We may update these terms from time to time. Continued use of the site constitutes
