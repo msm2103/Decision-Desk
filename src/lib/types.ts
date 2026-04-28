@@ -10,5 +10,7 @@ export type Note = {
   contentHtml: string;
   pdfUrl?: string;
   ttsEnabled?: boolean;
+  metaTitle?: string;
+  metaDescription?: string;
   tableOfContents: Array<{ id: string; title: string; level: 2 | 3 }>;
 };

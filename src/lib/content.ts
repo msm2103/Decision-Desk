@@ -14,6 +14,8 @@ type NoteFrontMatter = {
   excerpt: string;
   pdfUrl?: string;
   ttsEnabled?: boolean;
+  metaTitle?: string;
+  metaDescription?: string;
 };
 
 type NoteSource = {
@@ -103,6 +105,8 @@ async function getNoteFromSource(slug: string, source: string): Promise<Note> {
     contentHtml,
     pdfUrl: frontMatter.pdfUrl,
     ttsEnabled: frontMatter.ttsEnabled ?? false,
+    metaTitle: frontMatter.metaTitle,
+    metaDescription: frontMatter.metaDescription,
     tableOfContents,
   };
 }

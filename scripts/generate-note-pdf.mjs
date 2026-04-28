@@ -3,7 +3,7 @@ import path from "node:path";
 import PDFDocument from "pdfkit";
 
 const root = process.cwd();
-const noteSlug = "portfolio-construction-turning-trade-ideas-into-a-rates-portfolio";
+const noteSlug = process.argv[2] ?? "portfolio-construction-turning-trade-ideas-into-a-rates-portfolio";
 const notePath = path.join(root, "content", "notes", `${noteSlug}.md`);
 const outPath = path.join(
   root,

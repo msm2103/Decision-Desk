@@ -20,12 +20,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const note = await getNoteBySlug(slug);
 
   return {
-    title: note.title,
-    description: note.excerpt,
+    title: note.metaTitle ?? note.title,
+    description: note.metaDescription ?? note.excerpt,
     alternates: { canonical: `/notes/${note.slug}` },
     openGraph: {
-      title: note.title,
-      description: note.excerpt,
+      title: note.metaTitle ?? note.title,
+      description: note.metaDescription ?? note.excerpt,
       type: "article",
       url: `${siteConfig.url}/notes/${note.slug}`,
       images: [

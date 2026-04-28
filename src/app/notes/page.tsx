@@ -12,6 +12,9 @@ export const metadata = buildMetadata({
 
 export default async function NotesPage() {
   const notes = await getAllNotes();
+  const publicationNotes = notes.filter(
+    (note) => !note.tags.some((tag) => tag.toLowerCase() === "case studies"),
+  );
   return (
     <>
       <Section
@@ -20,7 +23,7 @@ export default async function NotesPage() {
         description="Personal publication notes on macro rates, relative value, and practical implementation."
       >
         <div className="grid md:grid-cols-2 gap-4">
-          {notes.map((note) => (
+          {publicationNotes.map((note) => (
             <NoteCard key={note.slug} note={note} />
           ))}
         </div>
