@@ -15,8 +15,10 @@ export function NoteContentsBox({ items }: NoteContentsBoxProps) {
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className={`text-sm font-semibold hover:underline ${
+                  className={`text-sm hover:underline ${
                     item.level === 3 ? "ml-4 text-slate-500" : "text-slate-700"
+                  } ${
+                    item.title.toLowerCase().startsWith("appendix") ? "font-normal" : "font-semibold"
                   }`}
                 >
                   {item.title}

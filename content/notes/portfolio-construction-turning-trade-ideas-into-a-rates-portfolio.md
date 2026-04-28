@@ -1,6 +1,6 @@
 ---
 title: "Portfolio Construction: Turning Trade Ideas into a Rates Portfolio"
-subtitle: "An illustrative case study in risk interaction, horizon diversification, and macro portfolio design"
+subtitle: "An illustrative case study framed on a Q4 2025 portfolio setup, focused on risk interaction, horizon diversification, and macro portfolio design"
 publishedAt: "2026-04-28"
 coverImage: "/images/notes/structural-hedge.svg"
 tags:

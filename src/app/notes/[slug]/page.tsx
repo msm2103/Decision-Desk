@@ -103,7 +103,9 @@ export default async function NoteDetailPage({ params }: Props) {
               </section>
             ) : null}
           </div>
-          <NoteContentsBox items={note.tableOfContents} />
+          <div className="relative">
+            <NoteContentsBox items={note.tableOfContents} />
+          </div>
         </div>
       </div>
     </article>
