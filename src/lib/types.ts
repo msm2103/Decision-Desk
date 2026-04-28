@@ -10,4 +10,5 @@ export type Note = {
   contentHtml: string;
   pdfUrl?: string;
   ttsEnabled?: boolean;
+  tableOfContents: Array<{ id: string; title: string; level: 2 | 3 }>;
 };

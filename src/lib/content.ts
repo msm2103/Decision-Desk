@@ -21,6 +21,42 @@ type NoteSource = {
   source: string;
 };
 
+function slugifyHeading(value: string): string {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+function buildTableOfContents(markdown: string): Array<{ id: string; title: string; level: 2 | 3 }> {
+  const headings: Array<{ id: string; title: string; level: 2 | 3 }> = [];
+  const lines = markdown.split("\n");
+  for (const line of lines) {
+    const h2Match = line.match(/^##\s+(.+)/);
+    if (h2Match) {
+      const title = h2Match[1].trim();
+      headings.push({ id: slugifyHeading(title), title, level: 2 });
+      continue;
+    }
+    const h3Match = line.match(/^###\s+(.+)/);
+    if (h3Match) {
+      const title = h3Match[1].trim();
+      headings.push({ id: slugifyHeading(title), title, level: 3 });
+    }
+  }
+  return headings;
+}
+
+function addHeadingIds(htmlContent: string): string {
+  return htmlContent.replace(/<h([23])>(.*?)<\/h\1>/g, (_match, level, innerText) => {
+    const plainText = innerText.replace(/<[^>]+>/g, "");
+    const id = slugifyHeading(plainText);
+    return `<h${level} id="${id}">${innerText}</h${level}>`;
+  });
+}
+
 function estimateReadingTime(markdown: string): string {
   const words = markdown.trim().split(/\s+/).length;
   const minutes = Math.max(1, Math.round(words / 220));
@@ -52,7 +88,8 @@ async function getNoteFromSource(slug: string, source: string): Promise<Note> {
   const frontMatter = data as NoteFrontMatter;
 
   const processed = await remark().use(gfm).use(html).process(content);
-  const contentHtml = processed.toString();
+  const contentHtml = addHeadingIds(processed.toString());
+  const tableOfContents = buildTableOfContents(content);
 
   return {
     slug,
@@ -66,6 +103,7 @@ async function getNoteFromSource(slug: string, source: string): Promise<Note> {
     contentHtml,
     pdfUrl: frontMatter.pdfUrl,
     ttsEnabled: frontMatter.ttsEnabled ?? false,
+    tableOfContents,
   };
 }
 

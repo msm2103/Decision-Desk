@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { Metadata } from "next";
+import { NoteContentsBox } from "@/components/NoteContentsBox";
 import { NoteCard } from "@/components/NoteCard";
 import { NoteTtsPlayer } from "@/components/NoteTtsPlayer";
 import { getAllNotes, getNoteBySlug, getRelatedNotes } from "@/lib/content";
@@ -47,64 +47,64 @@ export default async function NoteDetailPage({ params }: Props) {
 
   return (
     <article className="section-space">
-      <div className="container-width max-w-4xl space-y-8">
-        <div className="space-y-4">
-          <p className="text-xs uppercase tracking-[0.14em] text-slate-500">
-            {formatDate(note.publishedAt)} · {note.readingTime}
-          </p>
-          <h1 className="heading-serif text-4xl md:text-5xl text-slate-900">{note.title}</h1>
-          <p className="text-xl text-slate-700">{note.subtitle}</p>
-          <div className="flex flex-wrap gap-2">
-            {note.tags.map((tag) => (
-              <span key={tag} className="rounded-full border border-slate-300 px-2.5 py-1 text-xs text-slate-600">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <Image
-          src={note.coverImage}
-          alt={note.title}
-          width={1200}
-          height={675}
-          className="rounded-xl border border-slate-200"
-        />
-
-        <div
-          className="markdown-content"
-          dangerouslySetInnerHTML={{ __html: note.contentHtml }}
-        />
-
-        {note.ttsEnabled ? <NoteTtsPlayer title={note.title} text={note.contentHtml.replace(/<[^>]+>/g, " ")} /> : null}
-
-        {note.pdfUrl ? (
-          <div className="card">
-            <h2 className="heading-serif text-2xl mb-2">Download PDF</h2>
-            <p className="text-sm text-slate-600 mb-4">
-              Prefer an offline read? Download the PDF version of this note.
-            </p>
-            <a
-              href={note.pdfUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex rounded-full bg-slate-900 text-white px-4 py-2 text-sm hover:bg-slate-700 transition"
-            >
-              Open PDF
-            </a>
-          </div>
-        ) : null}
-
-        {relatedNotes.length > 0 ? (
-          <section className="space-y-4">
-            <h2 className="heading-serif text-2xl">Related notes</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {relatedNotes.map((entry) => (
-                <NoteCard key={entry.slug} note={entry} />
-              ))}
+      <div className="container-width max-w-7xl">
+        <div className="flex items-start gap-8">
+          <div className="flex-1 space-y-8 max-w-4xl">
+            <div className="card space-y-4">
+              <p className="text-xs uppercase tracking-[0.14em] text-slate-500">
+                {formatDate(note.publishedAt)} · {note.readingTime}
+              </p>
+              <h1 className="heading-serif text-4xl md:text-5xl text-slate-900">{note.title}</h1>
+              <p className="text-xl text-slate-700">{note.subtitle}</p>
+              <div className="flex flex-wrap gap-2">
+                {note.tags.map((tag) => (
+                  <span key={tag} className="rounded-full border border-slate-300 px-2.5 py-1 text-xs text-slate-600">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </section>
-        ) : null}
+
+            {(note.ttsEnabled || note.pdfUrl) ? (
+              <div className="grid gap-4 md:grid-cols-2">
+                {note.ttsEnabled ? <NoteTtsPlayer title={note.title} text={note.contentHtml.replace(/<[^>]+>/g, " ")} /> : null}
+                {note.pdfUrl ? (
+                  <div className="card">
+                    <h2 className="heading-serif text-2xl mb-2">Download PDF</h2>
+                    <p className="text-sm text-slate-600 mb-4">
+                      Prefer an offline read? Download the fully formatted PDF version with charts.
+                    </p>
+                    <a
+                      href={note.pdfUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex rounded-full bg-slate-900 text-white px-4 py-2 text-sm hover:bg-slate-700 transition"
+                    >
+                      Open PDF
+                    </a>
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+
+            <div
+              className="card markdown-content"
+              dangerouslySetInnerHTML={{ __html: note.contentHtml }}
+            />
+
+            {relatedNotes.length > 0 ? (
+              <section className="space-y-4">
+                <h2 className="heading-serif text-2xl">Related notes</h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {relatedNotes.map((entry) => (
+                    <NoteCard key={entry.slug} note={entry} />
+                  ))}
+                </div>
+              </section>
+            ) : null}
+          </div>
+          <NoteContentsBox items={note.tableOfContents} />
+        </div>
       </div>
     </article>
   );
