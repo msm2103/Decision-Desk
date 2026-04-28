@@ -29,6 +29,10 @@ function removeFrontMatter(markdown) {
   return parts.length > 1 ? parts.slice(1).join("\n---\n") : markdown;
 }
 
+function isSeparatorRow(cells) {
+  return cells.every((cell) => /^:?-+:?$/.test(cell.replace(/\s+/g, "")));
+}
+
 async function generate() {
   const markdown = await fs.readFile(notePath, "utf8");
   const lines = removeFrontMatter(markdown).split("\n");
@@ -46,10 +50,13 @@ async function generate() {
       }
     };
 
-    for (const raw of lines) {
+    let index = 0;
+    while (index < lines.length) {
+      const raw = lines[index];
       const line = raw.trim();
       if (!line) {
         doc.moveDown(0.5);
+        index += 1;
         continue;
       }
       if (line === "---") {
@@ -57,24 +64,28 @@ async function generate() {
         doc.moveDown(0.6);
         doc.strokeColor("#CBD5E1").lineWidth(1).moveTo(50, doc.y).lineTo(545, doc.y).stroke();
         doc.moveDown(0.8);
+        index += 1;
         continue;
       }
       if (line.startsWith("# ")) {
         ensureSpace(110);
         doc.font("Helvetica-Bold").fontSize(20).fillColor("#0F172A").text(cleanInline(line.slice(2)));
         doc.moveDown(0.6);
+        index += 1;
         continue;
       }
       if (line.startsWith("## ")) {
         ensureSpace(100);
         doc.font("Helvetica-Bold").fontSize(15).fillColor("#0F172A").text(cleanInline(line.slice(3)));
         doc.moveDown(0.45);
+        index += 1;
         continue;
       }
       if (line.startsWith("### ")) {
         ensureSpace(90);
         doc.font("Helvetica-Bold").fontSize(13).fillColor("#1E293B").text(cleanInline(line.slice(4)));
         doc.moveDown(0.35);
+        index += 1;
         continue;
       }
       if (line.startsWith("![")) {
@@ -90,18 +101,57 @@ async function generate() {
             doc.font("Helvetica-Oblique").fontSize(10).fillColor("#64748B").text("[Image omitted in PDF]");
           }
         }
+        index += 1;
         continue;
       }
       if (line.startsWith("|")) {
-        ensureSpace(70);
-        const row = line
-          .replace(/^\|/, "")
-          .replace(/\|$/, "")
-          .split("|")
-          .map((cell) => cleanInline(cell))
-          .join("   |   ");
-        if (row.replace(/[-:\s|]/g, "").length === 0) continue;
-        doc.font("Helvetica").fontSize(10).fillColor("#334155").text(row);
+        const tableLines = [];
+        while (index < lines.length && lines[index].trim().startsWith("|")) {
+          tableLines.push(lines[index].trim());
+          index += 1;
+        }
+        const parsedRows = tableLines
+          .map((tableLine) =>
+            tableLine
+              .replace(/^\|/, "")
+              .replace(/\|$/, "")
+              .split("|")
+              .map((cell) => cleanInline(cell)),
+          )
+          .filter((cells) => cells.length > 1);
+
+        const rows = parsedRows.filter((cells) => !isSeparatorRow(cells));
+        if (rows.length === 0) continue;
+
+        const columnCount = Math.max(...rows.map((cells) => cells.length));
+        const tableWidth = 495;
+        const columnWidth = tableWidth / columnCount;
+        const rowHeight = 24;
+
+        for (let rowIndex = 0; rowIndex < rows.length; rowIndex += 1) {
+          ensureSpace(40);
+          const cells = rows[rowIndex];
+          for (let col = 0; col < columnCount; col += 1) {
+            const x = 50 + (col * columnWidth);
+            const y = doc.y;
+            const cellText = cells[col] ?? "";
+            const isHeader = rowIndex === 0;
+            doc
+              .rect(x, y, columnWidth, rowHeight)
+              .fillAndStroke(isHeader ? "#F1F5F9" : "#FFFFFF", "#CBD5E1");
+            doc
+              .font(isHeader ? "Helvetica-Bold" : "Helvetica")
+              .fontSize(10)
+              .fillColor("#334155")
+              .text(cellText, x + 6, y + 7, {
+                width: columnWidth - 12,
+                ellipsis: true,
+                lineBreak: false,
+              });
+          }
+          doc.y += rowHeight;
+        }
+        doc.moveDown(0.5);
         continue;
       }
       if (line.startsWith("> ")) {
@@ -109,16 +159,19 @@ async function generate() {
         doc.font("Helvetica-Oblique").fontSize(11).fillColor("#1E293B").text(cleanInline(line.slice(2)), {
           indent: 16,
         });
+        index += 1;
         continue;
       }
       if (line.startsWith("- ")) {
         ensureSpace(70);
         doc.font("Helvetica").fontSize(11).fillColor("#334155").text(`• ${cleanInline(line.slice(2))}`);
+        index += 1;
         continue;
       }
 
       ensureSpace(70);
       doc.font("Helvetica").fontSize(11).fillColor("#334155").text(cleanInline(line), { lineGap: 2 });
+      index += 1;
     }
 
     doc.end();

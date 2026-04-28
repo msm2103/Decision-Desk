@@ -9,7 +9,7 @@ type NoteTtsPlayerProps = {
 
 export function NoteTtsPlayer({ title, text }: NoteTtsPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [rate, setRate] = useState<0.9 | 1 | 1.1>(1);
+  const [rate, setRate] = useState<1 | 1.25 | 1.5>(1);
   const isSupported = typeof window !== "undefined" && "speechSynthesis" in window;
 
   const cleanedText = useMemo(() => {
@@ -64,12 +64,12 @@ export function NoteTtsPlayer({ title, text }: NoteTtsPlayerProps) {
         <select
           id="tts-speed"
           value={rate}
-          onChange={(event) => setRate(Number(event.target.value) as 0.9 | 1 | 1.1)}
+          onChange={(event) => setRate(Number(event.target.value) as 1 | 1.25 | 1.5)}
           className="rounded-md border border-slate-300 px-2 py-1 text-sm text-slate-700"
         >
-          <option value={0.9}>0.9x</option>
-          <option value={1}>1.0x</option>
-          <option value={1.1}>1.1x</option>
+          <option value={1}>1x</option>
+          <option value={1.25}>1.25x</option>
+          <option value={1.5}>1.5x</option>
         </select>
       </div>
       <div className="flex flex-wrap gap-3">

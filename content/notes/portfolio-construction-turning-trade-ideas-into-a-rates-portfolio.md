@@ -12,10 +12,6 @@ pdfUrl: "/assets/notes/portfolio-construction-turning-trade-ideas-into-a-rates-p
 ttsEnabled: true
 ---
 
-# Portfolio Construction: Turning Trade Ideas into a Rates Portfolio
-
-*An illustrative case study in risk interaction, horizon diversification, and macro portfolio design.*
-
 This article is an illustrative case study in portfolio construction. It is based on public market information and simplified portfolio analytics. It is not investment advice, not a recommendation, and not a description of any live portfolio or employer-related activity.
 
 ---
