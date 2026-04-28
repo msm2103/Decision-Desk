@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { NoteCard } from "@/components/NoteCard";
-import { SubscribeForm } from "@/components/SubscribeForm";
+import { NoteTtsPlayer } from "@/components/NoteTtsPlayer";
 import { getAllNotes, getNoteBySlug, getRelatedNotes } from "@/lib/content";
 import { siteConfig } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
@@ -77,17 +76,24 @@ export default async function NoteDetailPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: note.contentHtml }}
         />
 
-        <div className="card">
-          <h2 className="heading-serif text-2xl mb-2">Subscribe for future notes</h2>
-          <SubscribeForm compact />
-          <p className="text-xs text-slate-500 mt-2">
-            Prefer to unsubscribe? Use the{" "}
-            <Link href="/unsubscribe" className="underline">
-              unsubscribe page
-            </Link>
-            .
-          </p>
-        </div>
+        {note.ttsEnabled ? <NoteTtsPlayer title={note.title} text={note.contentHtml.replace(/<[^>]+>/g, " ")} /> : null}
+
+        {note.pdfUrl ? (
+          <div className="card">
+            <h2 className="heading-serif text-2xl mb-2">Download PDF</h2>
+            <p className="text-sm text-slate-600 mb-4">
+              Prefer an offline read? Download the PDF version of this note.
+            </p>
+            <a
+              href={note.pdfUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex rounded-full bg-slate-900 text-white px-4 py-2 text-sm hover:bg-slate-700 transition"
+            >
+              Open PDF
+            </a>
+          </div>
+        ) : null}
 
         {relatedNotes.length > 0 ? (
           <section className="space-y-4">

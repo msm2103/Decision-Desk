@@ -2,7 +2,6 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
 import { NoteCard } from "@/components/NoteCard";
 import { Section } from "@/components/Section";
-import { SubscribeForm } from "@/components/SubscribeForm";
 import { getFeaturedNotes } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
@@ -64,11 +63,6 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section eyebrow="Stay updated" title="Subscribe for new notes">
-        <div className="card max-w-2xl">
-          <SubscribeForm compact />
-        </div>
-      </Section>
     </>
   );
 }

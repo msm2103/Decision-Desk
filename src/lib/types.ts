@@ -8,4 +8,6 @@ export type Note = {
   excerpt: string;
   readingTime: string;
   contentHtml: string;
+  pdfUrl?: string;
+  ttsEnabled?: boolean;
 };
