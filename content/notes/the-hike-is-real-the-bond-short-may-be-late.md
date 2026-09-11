@@ -1,0 +1,113 @@
+---
+title: "The hike is real. The bond short may be late."
+subtitle: "Energy has reopened the tightening debate. It has not yet proved that inflation will persist."
+publishedAt: "2026-09-11"
+coverImage: "/images/notes/macro-edition.svg"
+tags:
+  - Macro
+excerpt: "Central banks have found a reason to tighten; investors have not yet found proof that the inflation shock will persist. The ECB has announced a quarter-point rate increase, but August US CPI was still dominated by energy: gasoline accounted for more than a third of the…"
+ttsEnabled: true
+---
+**Information cutoff: 11 September 2026, 19:30 BST. Economic releases are included through August US CPI, published at 13:30 BST today. Market observations refer to 10 September unless stated otherwise.**
+
+Central banks have found a reason to tighten; investors have not yet found proof that the inflation shock will persist. The ECB has announced a quarter-point rate increase, but August US CPI was still dominated by energy: gasoline accounted for more than a third of the monthly rise while annual core inflation eased. That distinction matters. An energy shock can justify a pre-emptive hike and still leave the late bond seller owning the wrong part of the adjustment. The argument below separates the price shock from its propagation, compares the reaction functions, and sets the conditions for a euro real-rate trade—without pretending those conditions have arrived.
+
+## The investment judgement
+
+Three propositions are being bundled together. First, headline inflation will stay high while energy supply remains disrupted; the evidence supports that. Second, energy will spread into wages, services and expectations; that remains a risk rather than an established fact. Third, the major central banks must respond in the same way; their starting conditions say otherwise.
+
+The practical conclusion is patience. Do not add indiscriminate G4 front-end shorts ahead of the Federal Reserve, Bank of England and Bank of Japan decisions. The more interesting opportunity is a conditional euro real-rate receiver if energy plateaus, domestic inflation fails to broaden and the nominal policy path begins to retrace without inflation compensation collapsing faster. That is a watchlist, not an entry.
+
+## The inflation impulse is clear; persistence is not
+
+The ECB's increase was expected. The important information was its willingness to insure against a longer inflation overshoot. Its new baseline puts headline inflation at 3.0% in 2026, 2.5% in 2027 and 2.1% in 2028; inflation excluding energy and food is projected at 2.5%, 2.6% and 2.3%. Growth was revised up to 0.9% this year and 1.4% next year. The deposit rate will rise to 2.50% **from 16 September**; it was not yet in force at this article's cutoff.[^1]
+
+The composition of inflation is less conclusive than the headline. Euro-area HICP rose to 3.3% in August from 2.9%, with energy inflation at 14.3%. Inflation excluding energy held at 2.2%, while services slowed to 3.0% from 3.3%.[^2] The ECB is acting against propagation risk, not responding to proof that domestic inflation has already broken higher.
+
+US data tell a similar story with a little more discomfort. Final-demand producer prices rose 0.4% in August and 5.4% over the year. Goods prices increased 1.1%, including a 4.2% rise in final-demand energy and a 24.1% jump in diesel; services rose only 0.1%, although transportation and warehousing increased 2.3%.[^3] The pipeline shock is spreading beyond crude itself, but unevenly.
+
+Today's consumer-price report did not settle the persistence question. Headline CPI rose 0.4% in August and 3.4% over the year. Gasoline increased 3.9% and accounted for more than one-third of the monthly rise. Core CPI accelerated to 0.3% month on month, but eased to 2.4% year on year; shelter returned to 0.3% after 0.1% in July.[^4] That is firm enough to keep a September Fed hike in play, but too energy-heavy to establish a new domestic inflation regime.
+
+### What changed—and what still needs proving
+
+| Evidence | Latest public reading | Investment implication |
+|---|---:|---|
+| Euro-area headline HICP | 3.3% year on year | Energy has interrupted disinflation visibly. |
+| Euro-area HICP excluding energy | 2.2% year on year | Broad persistence is not yet evident. |
+| US CPI | +0.4% month on month; +3.4% year on year | Gasoline dominated the monthly increase. |
+| US core CPI | +0.3% month on month; +2.4% year on year | Monthly firmness matters; the annual rate still eased. |
+| ECB deposit facility | 2.50% from 16 September | The hike is announced, with further moves data-dependent. |
+
+There is a credible reason for rates markets to fear overtightening. ECB researchers recently combined firm-level evidence with a calibrated New Keynesian model of companies facing several financing constraints. In their model, aggregate investment falls twice as much after a tightening shock as it rises after an equally sized easing.[^5] This is a model result, not a forecast for Europe in 2026. Its relevance is the mechanism: imported energy reduces purchasing power while higher rates tighten refinancing and borrowing constraints. The same shock can be inflationary first and disinflationary later.
+
+The tempting historical analogy is 2022. It should be used carefully. The Bank of England's July minutes record little evidence so far of material second-round effects and describe softer demand, a looser labour market and a more restrictive starting policy stance than in the earlier episode. The committee nevertheless stressed that wage and price pass-through arrives with a lag.[^6] Today's absence of propagation is informative, but it is not an all-clear.
+
+## One shock, different reaction functions
+
+The Fed has the cleanest near-term case for another hike. In July it held the funds range at 3.50–3.75% by a 9–3 vote; all three dissenters preferred a 25bp increase. The statement described activity as solid and inflation as elevated.[^7] August CPI preserves a live choice between hiking now and retaining optionality.
+
+Europe faces a larger imported-income loss, so the growth cost of insurance may arrive sooner. The Bank of England is more divided: six members held Bank Rate at 3.75% in July while three preferred 4%, with the disagreement centred on whether emerging second rounds warranted pre-emption.[^6] Japan's problem is different again. The BoJ expects crude, yen weakness and other factors to keep inflation above 2% before it moderates, and says it will continue raising its policy rate as the outlook permits.[^8] A Japanese hike can therefore reflect normalisation and currency-linked inflation rather than stronger domestic demand.
+
+The useful cross-market contradiction came from the euro. After the expected ECB increase and higher inflation forecasts, EUR/USD extended mild losses and initially slipped below $1.16 as the lack of a pre-committed path and the growth risks offset the hawkish signal.[^9] The move was modest, but it matters: rates were validating tighter policy while the currency declined to confirm a durable European yield advantage. That is evidence of a more conditional policy story, not proof of an imminent rates reversal.
+
+## Choose the payoff before choosing the story
+
+A euro 1y1y real-rate receiver is more targeted than a generic duration long, but its arithmetic is unforgiving. Approximately:
+
+**change in real rate = change in nominal rate − change in matched inflation compensation.**
+
+If the nominal forward falls 20bp while inflation compensation falls 30bp, the real rate rises 10bp and the receiver loses. Falling inflation alone is insufficient. The trade needs the nominal policy path to fall by more than the relevant inflation compensation.
+
+That leaves four distinct choices:
+
+| Expression | What must be true | Current decision |
+|---|---|---|
+| Short G4 front ends | Inflation persistence is broadening and remains underpriced | Do not add after the first repricing and before three policy meetings. |
+| EUR 2s10s steepener | Front-end tightening is near its limit and long-end fiscal risk is contained | Reject for now: another hike can flatten the curve, while the long end introduces a separate risk. |
+| Receive EUR 1y1y real | Nominal policy expectations retrace more than inflation compensation | Watchlist only: require both legs and domestic-inflation confirmation. |
+| Buy rate volatility | Implied volatility is cheap against the plausible realised distribution | No view: a busy calendar does not establish cheap options. |
+
+### Hypothetical model-portfolio stance
+
+| Status | Expression | Portfolio purpose | Entry condition | Invalidation |
+|---|---|---|---|---|
+| Hold risk budget | No new front-end short | Avoid paying again for policy insurance already repriced | Reassess after the Fed, BoE and BoJ | Core services, wages and expectations broaden enough to validate a continuing cycle |
+| Watchlist | Receive EUR 1y1y real | Conditional exposure to excessive real restraint | Energy plateaus; domestic inflation stays contained; the real forward stops rising on hawkish news | Energy makes new highs and second rounds broaden, or inflation compensation falls faster than nominal forwards |
+| Watchlist hedge | Inflation protection after a pull-back | Protect the persistence tail | Use defined loss and avoid chasing spot energy | Supply normalises and medium-term inflation expectations remain anchored |
+
+No numerical entry, target or stop is offered because the entry conditions have not been met. The next decision is not “hawkish or dovish”. It is whether the data validate propagation after the energy impulse.
+
+For the Fed on 16 September, watch whether the committee describes a hike as insurance or the start of a sequence. UK CPI arrives on the same day, before the BoE decision on 17 September; the vote and the language on second rounds matter more than a finely balanced decision. For the BoJ on 18 September, read the rate decision with the yen and the Bank's estimate of underlying inflation.[^10]
+
+Central banks may be right to buy credibility insurance. Investors should still refuse to pay twice for it. Until wages, services and expectations confirm that energy has become domestic inflation, the better trade is to wait for the expression—not chase the story.
+
+## Sources
+
+[^1]: European Central Bank, [Monetary policy decisions](https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html), 10 September 2026.
+[^2]: Eurostat, [Euro area annual inflation up to 3.3%](https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-01092026-ap), 1 September 2026.
+[^3]: US Bureau of Labor Statistics, [Producer Price Indexes — August 2026](https://www.bls.gov/news.release/archives/ppi_09102026.htm), 10 September 2026.
+[^4]: US Bureau of Labor Statistics, [Consumer Price Index — August 2026](https://www.bls.gov/news.release/cpi.nr0.htm), released 11 September 2026 and accessed at this article's cutoff.
+[^5]: Ander Perez-Orive, Yannick Timmer and Alejandro Van der Ghote, [Monetary policy under multiple financing constraints](https://www.ecb.europa.eu/press/research-publications/resbull/2026/html/ecb.rb260623~d5784647c1.en.html), ECB Research Bulletin No. 144, 23 June 2026.
+[^6]: Bank of England, [Bank Rate maintained at 3.75% — July 2026](https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/july-2026), 30 July 2026.
+[^7]: Federal Reserve, [FOMC statement](https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm), 29 July 2026.
+[^8]: Bank of Japan, [Highlights of the Outlook for Economic Activity and Prices — July 2026](https://www.boj.or.jp/en/mopo/outlook/highlight/ten202607.htm), 31 July 2026.
+[^9]: Kathleen Brooks, [ECB won't commit to future hikes, which weighs on the Euro](https://www.fxstreet.com/analysis/ecb-wont-commit-to-future-hikes-which-weighs-on-the-euro-202609101321), FXStreet/XTB UK, 10 September 2026.
+[^10]: [Federal Reserve meeting calendars](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm); Office for National Statistics, [Consumer price inflation, UK: August 2026](https://www.ons.gov.uk/releases/consumerpriceinflationukaugust2026); [Bank of England upcoming MPC dates](https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates); [Bank of Japan Monetary Policy Meetings](https://www.boj.or.jp/en/mopo/mpmsche_minu/).
+
+*This article provides general market commentary and a hypothetical model watchlist. It is not personalised investment advice. Market instruments involve risk, and the views may change as new information arrives.*
+
+---
+
+## The Trader's Take: Three Perspectives
+
+## Hedgie
+
+The new information is policy willingness, not proof of a wage-price spiral. The ECB accepted the growth risk of a pre-emptive hike, three Fed members already wanted to tighten in July, and August US core prices accelerated on the month. I would keep exposure light into policy week, but I would not fade the front-end move merely because energy led the headline. The trade earns momentum only if services, wages and expectations begin confirming the signal after oil stabilises; another oil spike alone is increasingly priced. **I would change my mind if core services soften, the Fed preserves optionality and yields fail to rise on fresh hawkish news.**
+
+## RM
+
+The market is charging persistence before it has delivered it. Gasoline produced more than a third of the US monthly CPI rise, euro-area inflation excluding energy stayed at 2.2%, and the euro weakened after an expected ECB hike. That combination says policy insurance is getting more expensive while its growth cost is also rising. I would still wait rather than receive ahead of three meetings: being early is simply another way to be wrong. The opportunity begins when bad inflation news stops pushing real forwards higher. **I would change my mind if energy makes new highs and wages, services and expectations broaden together.**
+
+## Macro Navigator
+
+The argument becomes investable only when the payoff matches the thesis. A euro real-rate receiver needs nominal policy expectations to fall by more than matched inflation compensation; disinflation can otherwise raise the real rate and lose money. A 2s10s steepener adds fiscal and term-premium exposure, while a busy calendar says nothing about whether options are cheap. The clean decision is therefore no position, with a conditional 1y1y real receiver on the watchlist after policy week. Validate the legs, basis, carry and entry level first. **I would change my mind if successive hikes become the stated baseline or inflation compensation falls faster than nominal forwards.**
