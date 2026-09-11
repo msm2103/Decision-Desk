@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { NoteContentsBox } from "@/components/NoteContentsBox";
 import { NoteCard } from "@/components/NoteCard";
 import { NoteTtsPlayer } from "@/components/NoteTtsPlayer";
+import { SubscribeForm } from "@/components/SubscribeForm";
 import { getAllNotes, getNoteBySlug, getRelatedNotes } from "@/lib/content";
 import { siteConfig } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
@@ -10,10 +12,6 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export const dynamic = "force-static";
-export const dynamicParams = false;
-export const revalidate = false;
-
 export async function generateStaticParams() {
   const notes = await getAllNotes();
   return notes.map((note) => ({ slug: note.slug }));
@@ -21,7 +19,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const note = await getNoteBySlug(slug);
+  let note;
+  try {
+    note = await getNoteBySlug(slug);
+  } catch {
+    return {
+      title: "Note not found",
+      description: "The requested note could not be found.",
+    };
+  }
 
   return {
     title: note.metaTitle ?? note.title,
@@ -46,7 +52,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function NoteDetailPage({ params }: Props) {
   const { slug } = await params;
-  const note = await getNoteBySlug(slug);
+  let note;
+  try {
+    note = await getNoteBySlug(slug);
+  } catch {
+    notFound();
+  }
   const relatedNotes = await getRelatedNotes(note);
 
   return (
@@ -106,6 +117,14 @@ export default async function NoteDetailPage({ params }: Props) {
                 </div>
               </section>
             ) : null}
+
+            <section className="card space-y-3">
+              <h2 className="heading-serif text-2xl">Subscribe for future notes</h2>
+              <p className="text-sm text-slate-600">
+                Get an email when the next edition is published.
+              </p>
+              <SubscribeForm compact />
+            </section>
           </div>
           <div className="relative">
             <NoteContentsBox items={note.tableOfContents} />

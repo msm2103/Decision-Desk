@@ -65,9 +65,36 @@ function estimateReadingTime(markdown: string): string {
   return `${minutes} min read`;
 }
 
+function normalizeSlug(input: string): string {
+  const decoded = decodeURIComponent(input).toLowerCase().trim();
+  return decoded.replace(/^\/+|\/+$/g, "");
+}
+
+function buildSummaryNote(slug: string, source: string): Note {
+  const { data, content } = matter(source);
+  const frontMatter = data as NoteFrontMatter;
+
+  return {
+    slug,
+    title: frontMatter.title,
+    subtitle: frontMatter.subtitle,
+    publishedAt: frontMatter.publishedAt,
+    coverImage: frontMatter.coverImage,
+    tags: frontMatter.tags ?? [],
+    excerpt: frontMatter.excerpt,
+    readingTime: estimateReadingTime(content),
+    contentHtml: "",
+    pdfUrl: frontMatter.pdfUrl,
+    ttsEnabled: frontMatter.ttsEnabled ?? true,
+    metaTitle: frontMatter.metaTitle,
+    metaDescription: frontMatter.metaDescription,
+    tableOfContents: [],
+  };
+}
+
 export async function getAllNotes(): Promise<Note[]> {
   const sources = notesManifest as NoteSource[];
-  const notes = await Promise.all(sources.map((entry) => getNoteFromSource(entry.slug, entry.source)));
+  const notes = sources.map((entry) => buildSummaryNote(entry.slug, entry.source));
 
   return notes.sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : -1,
@@ -76,7 +103,8 @@ export async function getAllNotes(): Promise<Note[]> {
 
 export async function getNoteBySlug(slug: string): Promise<Note> {
   const sources = notesManifest as NoteSource[];
-  const source = sources.find((entry) => entry.slug === slug);
+  const requestedSlug = normalizeSlug(slug);
+  const source = sources.find((entry) => normalizeSlug(entry.slug) === requestedSlug);
 
   if (!source) {
     throw new Error(`Note not found for slug: ${slug}`);
@@ -104,7 +132,7 @@ async function getNoteFromSource(slug: string, source: string): Promise<Note> {
     readingTime: estimateReadingTime(content),
     contentHtml,
     pdfUrl: frontMatter.pdfUrl,
-    ttsEnabled: frontMatter.ttsEnabled ?? false,
+    ttsEnabled: frontMatter.ttsEnabled ?? true,
     metaTitle: frontMatter.metaTitle,
     metaDescription: frontMatter.metaDescription,
     tableOfContents,

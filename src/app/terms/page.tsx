@@ -19,7 +19,7 @@ export default function TermsPage() {
           jurisdiction.
         </p>
         <p>
-          Decision Desk is a personal fixed income publication. Content is provided for
+          Decision Desk is a personal macro publication. Content is provided for
           general information and educational reading only. It is not investment advice,
           a personal recommendation, a solicitation, or an offer of services.
         </p>

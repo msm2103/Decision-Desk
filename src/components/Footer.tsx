@@ -8,19 +8,15 @@ export function Footer() {
       <div className="container-width py-10 space-y-6">
         <BrandLogo small />
         <p className="text-sm max-w-2xl" style={{ color: "var(--brand-navy-soft)" }}>
-          Decision Desk is Mark Martin&apos;s personal fixed income publication: research notes, market frameworks, and illustrative educational case studies on rates, risk, relative value, and portfolio construction. Views are personal and for general information only.
+          Decision Desk is Mark Martin&apos;s personal macro publication. Notes are for general information only. They are not investment advice and not a commercial service.
         </p>
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm" style={{ color: "var(--brand-navy)" }}>
           <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
-          <a href={siteConfig.social.x.url} target="_blank" rel="noreferrer">
-            X ({siteConfig.social.x.handle})
-          </a>
-          <a href={siteConfig.social.instagram.url} target="_blank" rel="noreferrer">
-            Instagram ({siteConfig.social.instagram.handle})
-          </a>
           <a href={siteConfig.social.linkedin.url} target="_blank" rel="noreferrer">
             LinkedIn
           </a>
+          <Link href="/subscribe" prefetch={false}>Subscribe</Link>
+          <Link href="/unsubscribe" prefetch={false}>Unsubscribe</Link>
           <Link href="/disclaimer" prefetch={false}>Disclaimer</Link>
           <Link href="/privacy" prefetch={false}>Privacy Policy</Link>
           <Link href="/terms" prefetch={false}>Terms</Link>

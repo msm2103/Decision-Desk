@@ -1,15 +1,14 @@
 # Decision Desk
 
-Professional website for `decisiondesk.co.uk`, built with Next.js App Router, TypeScript, Tailwind CSS, markdown-based Notes content, and tool pages with Stripe checkout links and webhook delivery support.
+Personal publication site for `decisiondesk.co.uk`. Next.js App Router, TypeScript, Tailwind CSS, markdown notes, and Cloudflare Workers via OpenNext.
 
 ## Stack
 
 - Next.js (App Router) + TypeScript
 - Tailwind CSS
 - Markdown content via `gray-matter` + `remark`
-- Buttondown API for subscribe/unsubscribe flow
+- Buttondown API for subscribe/unsubscribe
 - Resend for transactional email
-- Stripe webhook route for automatic digital tool delivery
 - Optional Plausible analytics via script injection
 
 ## Local development
@@ -23,10 +22,26 @@ Open `http://localhost:3000`.
 
 ## Content workflow
 
-- Add notes in `content/notes/*.md` with front matter:
-  - `slug` (filename), `title`, `subtitle`, `publishedAt`, `coverImage`, `tags`, `excerpt`
-- Add tools in `content/tools/*.json`:
-  - `slug`, `title`, `priceText`, `shortDescription`, `screenshots`, `paymentLink`, delivery fields, and FAQ
+Import a Research edition folder (reads `A_article_draft.md` and, if present, `D_the_traders_take.md`):
+
+```bash
+npm run notes:import -- "C:\Users\msm21\Documents\Macro Tool\Research\editions\YYYY-MM-DD"
+```
+
+The script writes `content/notes/{slug}.md` with front matter (`ttsEnabled: true` by default) and refreshes `src/generated/notes-manifest.json`. It never copies `B_private_appendix.md` or `C_next_edition_memory.md`.
+
+You can also add notes directly in `content/notes/*.md` with:
+
+- `title`, `subtitle`, `publishedAt`, `coverImage`, `tags`, `excerpt`
+- optional `pdfUrl`, `ttsEnabled` (defaults to true), `metaTitle`, `metaDescription`
+
+Then deploy:
+
+```bash
+npm run deploy
+```
+
+After a live publish, send the subscriber alert from Buttondown with a link to `/notes/{slug}`.
 
 ## Environment variables
 
@@ -40,14 +55,14 @@ Key integrations:
 
 - `BUTTONDOWN_API_KEY` for subscriptions
 - `RESEND_API_KEY` + `EMAIL_FROM` for transactional emails
-- `STRIPE_SECRET_KEY` + `STRIPE_WEBHOOK_SECRET` for purchase webhook delivery
-- `TOOL_PRICE_ID_TO_SLUG_JSON` if mapping Stripe Price IDs to tool slugs
 - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` for analytics
+
+Set the same secrets on the Cloudflare Worker (`decisiondesk`) before deploying.
 
 ## Deployment
 
-- Recommended: Vercel or Cloudflare Pages.
-- Configure all environment variables in hosting platform settings.
-- Point domain DNS for `decisiondesk.co.uk`.
-- Configure Stripe webhook endpoint:
-  - `https://decisiondesk.co.uk/api/stripe/webhook`
+```bash
+npm run deploy
+```
+
+This builds with OpenNext and deploys the existing Cloudflare Worker `decisiondesk` for `decisiondesk.co.uk`.

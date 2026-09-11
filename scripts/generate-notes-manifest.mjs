@@ -7,6 +7,7 @@ const outDir = path.join(root, "src", "generated");
 const outFile = path.join(outDir, "notes-manifest.json");
 
 async function generate() {
+  await fs.mkdir(notesDir, { recursive: true });
   const filenames = await fs.readdir(notesDir);
   const notes = await Promise.all(
     filenames

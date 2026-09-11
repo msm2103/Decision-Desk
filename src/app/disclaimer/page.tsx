@@ -31,10 +31,8 @@ export default function DisclaimerPage() {
           rate, index, fund, or financial instrument.
         </p>
         <p>
-          Trade examples, market notes, case studies, model snapshots, and portfolio-style
-          illustrations are retrospective, selective, delayed, and educational unless clearly
-          stated otherwise. They are not live trade communications, trading signals, or
-          instructions to transact.
+          Notes, exhibits, and any trade examples are selective and educational. They are
+          not live trade communications, trading signals, or instructions to transact.
         </p>
         <p>
           Any analysis is based on public information, assumptions, and personal interpretation

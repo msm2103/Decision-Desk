@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import PDFDocument from "pdfkit";
+import matter from "gray-matter";
 
 const root = process.cwd();
 const noteSlug = process.argv[2] ?? "portfolio-construction-turning-trade-ideas-into-a-rates-portfolio";
@@ -23,19 +24,15 @@ function cleanInline(text) {
     .trim();
 }
 
-function removeFrontMatter(markdown) {
-  if (!markdown.startsWith("---")) return markdown;
-  const parts = markdown.split("\n---\n");
-  return parts.length > 1 ? parts.slice(1).join("\n---\n") : markdown;
-}
-
 function isSeparatorRow(cells) {
   return cells.every((cell) => /^:?-+:?$/.test(cell.replace(/\s+/g, "")));
 }
 
 async function generate() {
   const markdown = await fs.readFile(notePath, "utf8");
-  const lines = removeFrontMatter(markdown).split("\n");
+  const { data, content } = matter(markdown);
+  const frontMatter = data ?? {};
+  const lines = content.split("\n");
 
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   const outHandle = await fs.open(outPath, "w");
@@ -50,6 +47,35 @@ async function generate() {
       }
     };
 
+    const title = typeof frontMatter.title === "string" ? frontMatter.title : "";
+    const subtitle = typeof frontMatter.subtitle === "string" ? frontMatter.subtitle : "";
+    const publishedAt = typeof frontMatter.publishedAt === "string" ? frontMatter.publishedAt : "";
+    const tags = Array.isArray(frontMatter.tags) ? frontMatter.tags : [];
+    const excerpt = typeof frontMatter.excerpt === "string" ? frontMatter.excerpt : "";
+
+    if (title) {
+      doc.font("Helvetica-Bold").fontSize(22).fillColor("#0F172A").text(cleanInline(title));
+      doc.moveDown(0.3);
+    }
+    if (subtitle) {
+      doc.font("Helvetica-Oblique").fontSize(12).fillColor("#334155").text(cleanInline(subtitle));
+      doc.moveDown(0.4);
+    }
+    if (publishedAt || tags.length > 0) {
+      const parts = [];
+      if (publishedAt) parts.push(`Published: ${publishedAt}`);
+      if (tags.length > 0) parts.push(`Tags: ${tags.join(" • ")}`);
+      doc.font("Helvetica").fontSize(10).fillColor("#475569").text(parts.join("   |   "));
+      doc.moveDown(0.4);
+    }
+    if (excerpt) {
+      doc.font("Helvetica").fontSize(10.5).fillColor("#334155").text(cleanInline(excerpt), { lineGap: 1.5 });
+      doc.moveDown(0.6);
+    }
+    doc.strokeColor("#CBD5E1").lineWidth(1).moveTo(50, doc.y).lineTo(545, doc.y).stroke();
+    doc.moveDown(0.8);
+
+    let skippedTitleHeading = false;
     let index = 0;
     while (index < lines.length) {
       const raw = lines[index];
@@ -68,6 +94,11 @@ async function generate() {
         continue;
       }
       if (line.startsWith("# ")) {
+        if (!skippedTitleHeading && title && cleanInline(line.slice(2)) === cleanInline(title)) {
+          skippedTitleHeading = true;
+          index += 1;
+          continue;
+        }
         ensureSpace(110);
         doc.font("Helvetica-Bold").fontSize(20).fillColor("#0F172A").text(cleanInline(line.slice(2)));
         doc.moveDown(0.6);

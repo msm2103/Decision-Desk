@@ -17,13 +17,18 @@ export async function sendTransactionalEmail(input: {
     return { sent: false, reason: "RESEND_API_KEY not configured" };
   }
 
-  await resend.emails.send({
-    from: process.env.EMAIL_FROM ?? `${siteConfig.name} <onboarding@resend.dev>`,
-    to: input.to,
-    subject: input.subject,
-    html: input.html,
-    replyTo: siteConfig.contactEmail,
-  });
+  try {
+    await resend.emails.send({
+      from: process.env.EMAIL_FROM ?? `${siteConfig.name} <onboarding@resend.dev>`,
+      to: input.to,
+      subject: input.subject,
+      html: input.html,
+      replyTo: siteConfig.contactEmail,
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown email provider error";
+    return { sent: false, reason: message };
+  }
 
   return { sent: true };
 }

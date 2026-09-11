@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "notes:manifest": "node scripts/generate-notes-manifest.mjs",
+    "notes:import": "node scripts/import-edition.mjs",
     "prebuild": "npm run notes:manifest",
     "build": "next build --webpack",
     "start": "next start",

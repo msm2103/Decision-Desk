@@ -27,12 +27,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Invalid email address." }, { status: 400 });
     }
 
-    await sendContactEnquiryEmail({
+    const emailResult = await sendContactEnquiryEmail({
       name: body.name,
       email: body.email,
       organisation: body.organisation,
       message: body.message,
     });
+
+    if (!emailResult.sent) {
+      console.error("Contact email not sent:", emailResult.reason);
+      return NextResponse.json(
+        { message: "Message could not be delivered right now. Please try again shortly." },
+        { status: 503 },
+      );
+    }
 
     return NextResponse.json({
       message: "Thank you. Your enquiry has been sent.",

@@ -2,25 +2,24 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
 import { NoteCard } from "@/components/NoteCard";
 import { Section } from "@/components/Section";
-import { getAllNotes, getFeaturedNotes } from "@/lib/content";
+import { SubscribeForm } from "@/components/SubscribeForm";
+import { getAllNotes } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
 export const revalidate = false;
 
 export const metadata = buildMetadata({
-  title: "Mark Martin | Decision Desk | Fixed Income Research",
+  title: "Mark Martin | Decision Desk | Macro Notes",
   description:
-    "Decision Desk is Mark Martin’s personal fixed income publication, focused on developed-market rates, EUR/GBP relative value, curve strategy, derivatives, ALM, portfolio construction, and systematic investment process.",
+    "Decision Desk is Mark Martin’s personal publication for weekly macro research notes on rates, policy, and market structure.",
   path: "/",
 });
 
 export default async function Home() {
-  const featuredNotes = await getFeaturedNotes();
-  const allNotes = await getAllNotes();
-  const featuredCaseStudies = allNotes
-    .filter((note) => note.tags.some((tag) => tag.toLowerCase() === "case studies"))
-    .slice(0, 2);
+  const notes = await getAllNotes();
+  const latest = notes[0];
+  const recent = notes.slice(1, 4);
 
   return (
     <>
@@ -32,76 +31,69 @@ export default async function Home() {
               Mark Martin | Decision Desk
             </p>
             <h1 className="heading-serif text-4xl md:text-6xl leading-tight">
-              Fixed income research from a London-based rates portfolio manager
+              Weekly macro notes
             </h1>
             <p className="text-lg" style={{ color: "var(--brand-navy-soft)" }}>
-              Decision Desk is the personal publication of Mark Martin, a senior fixed income portfolio manager focused on developed-market rates, EUR/GBP relative value, curve strategy, derivatives, ALM, and systematic investment process.
+              Decision Desk is the personal publication of Mark Martin. It is the public home for notes on rates, policy, and market structure, written for professional readers and published every week or so.
             </p>
             <p className="text-lg" style={{ color: "var(--brand-navy-soft)" }}>
-              The site publishes research notes, market frameworks, and delayed illustrative case studies on rates, risk, portfolio construction, and implementation. The emphasis is not market noise or live trade calls, but disciplined thinking: how ideas are framed, tested, expressed, risk-managed, and reviewed.
+              The archive is the product. Subscribe if you want an email when a new note is published.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/notes" className="btn-primary">
-                Read Notes
+                Browse notes
               </Link>
-              <Link href="/case-studies" className="btn-secondary">
-                View Case Studies
+              <Link href="/subscribe" className="btn-secondary">
+                Subscribe
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="pb-6">
-        <div className="container-width">
-          <div className="card grid md:grid-cols-3 gap-6 text-sm">
-            <p>15+ years across hedge funds, insurance asset management, treasury risk, banking, and rates derivatives.</p>
-            <p>Developed-market rates focus across EUR and GBP relative value, curves, swaps, swaptions, asset swaps, overlays, convexity, and ALM.</p>
-            <p>Python, SQL, AI, spreadsheets, and Bloomberg-led analytics for repeatable research, portfolio diagnostics, and risk communication.</p>
+      {latest ? (
+        <Section
+          eyebrow="Latest"
+          title="Latest note"
+          description="The most recent edition."
+        >
+          <div className="max-w-3xl">
+            <NoteCard note={latest} />
           </div>
-        </div>
-      </section>
+        </Section>
+      ) : (
+        <Section
+          eyebrow="Archive"
+          title="No notes yet"
+          description="The first weekly edition will appear here when it is published."
+        >
+          <p style={{ color: "var(--brand-navy-soft)" }}>
+            Until then, you can subscribe for an email alert.
+          </p>
+        </Section>
+      )}
+
+      {recent.length > 0 ? (
+        <Section
+          eyebrow="Recent"
+          title="Earlier editions"
+          description="Previous weekly notes."
+        >
+          <div className="grid md:grid-cols-3 gap-4">
+            {recent.map((note) => (
+              <NoteCard key={note.slug} note={note} />
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       <Section
-        eyebrow="Featured Notes"
-        title="Featured Notes"
-        description="Research notes and frameworks on macro rates, relative value, portfolio construction, and implementation."
+        eyebrow="Subscribe"
+        title="Email alerts for new notes"
+        description="A short notice when a new edition is published. Unsubscribe at any time."
       >
-        <div className="grid md:grid-cols-3 gap-4">
-          {featuredNotes.map((note) => (
-            <NoteCard key={note.slug} note={note} />
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Case Studies"
-        title="Illustrative Case Studies"
-        description="Delayed educational reviews of selected fixed income ideas, focused on thesis, structure, risk, what changed, and lessons learned."
-      >
-        <div className="grid md:grid-cols-2 gap-4">
-          {featuredCaseStudies.map((note) => (
-            <NoteCard key={note.slug} note={note} />
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="About" title="Research with implementation discipline">
-        <div className="card max-w-4xl space-y-4">
-          <p style={{ color: "var(--brand-navy-soft)" }}>
-            Decision Desk is built around the part of fixed income that sits between macro narrative and actual portfolio construction. The focus is on structure, path dependency, carry, convexity, liquidity, balance-sheet constraints, and the trade-offs that determine whether a market view can be expressed cleanly.
-          </p>
-        </div>
-      </Section>
-
-      <Section eyebrow="Archive" title="A public research archive">
-        <div className="card max-w-4xl space-y-4">
-          <p style={{ color: "var(--brand-navy-soft)" }}>
-            Decision Desk is a place to make market thinking visible: not as advice, not as a product, and not as a live portfolio record, but as a disciplined archive of fixed income research, frameworks, and reflective case studies.
-          </p>
-          <Link href="/about" className="btn-secondary w-fit">
-            About Mark Martin
-          </Link>
+        <div className="card max-w-2xl">
+          <SubscribeForm />
         </div>
       </Section>
     </>

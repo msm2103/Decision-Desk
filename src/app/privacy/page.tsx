@@ -6,7 +6,7 @@ export const revalidate = false;
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
-  description: "Privacy policy for Decision Desk website and forms.",
+  description: "Privacy policy for Decision Desk website, subscriptions, and forms.",
   path: "/privacy",
 });
 
@@ -16,12 +16,17 @@ export default function PrivacyPage() {
       <div className="card text-slate-700 space-y-4">
         <p>
           Decision Desk collects personal data that you voluntarily provide through contact
-          forms or email correspondence. This may include your name, email address, organisation,
-          and message details.
+          forms, email correspondence, or the subscription form. This may include your name,
+          email address, organisation, and message details.
         </p>
         <p>
           Contact enquiry data is used only to respond to your message, maintain a basic
           correspondence record, and operate the site responsibly.
+        </p>
+        <p>
+          Subscription data is processed through a third-party email provider so that we can
+          send alerts when a new note is published. You can remove that data via the unsubscribe
+          page, an unsubscribe link in any email, or a direct request to info@decisiondesk.co.uk.
         </p>
         <p>
           Decision Desk does not sell personal data and does not use contact details for

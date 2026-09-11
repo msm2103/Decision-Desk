@@ -6,10 +6,9 @@ import { BrandLogo } from "@/components/BrandLogo";
 
 const navItems = [
   { href: "/", label: "Home", prefetch: true },
-  { href: "/about", label: "About Mark Martin", prefetch: true },
   { href: "/notes", label: "Notes", prefetch: true },
-  { href: "/case-studies", label: "Case Studies", prefetch: true },
-  { href: "/contact", label: "Contact", prefetch: false },
+  { href: "/subscribe", label: "Subscribe", prefetch: false },
+  { href: "/about", label: "About", prefetch: true },
   { href: "/disclaimer", label: "Disclaimer", prefetch: false },
 ];
 
