@@ -15,6 +15,21 @@ export async function POST(request: Request) {
 
     const response = await unsubscribeEmail(email);
     if (!response.ok) {
+      if (response.code === "not_found") {
+        return NextResponse.json(
+          { message: "That email is not on the subscriber list." },
+          { status: 404 },
+        );
+      }
+
+      if (response.code !== "not_configured") {
+        console.error("Buttondown unsubscribe failed:", response.message);
+        return NextResponse.json(
+          { message: "Unable to unsubscribe at the moment." },
+          { status: 502 },
+        );
+      }
+
       return NextResponse.json(
         {
           message:
